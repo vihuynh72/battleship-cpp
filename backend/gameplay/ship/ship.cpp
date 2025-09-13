@@ -6,7 +6,7 @@ using namespace std;
 Ship::Ship() {
     name = "Unnamed Ship";
     direction = "horizontal";
-    length = 1;
+    length = 2;
     hitCount = 0;
     isSunk = false;
 }
@@ -27,7 +27,8 @@ Ship::attackShip(Board& board, int x, int y) {
 
 }
 
-Ship::getShipInfo() {
+// TODO: Move to UI
+Ship::displayShipInfo() {
     cout << "Ship Name: " << name << endl;
     cout << "Direction: " << direction << endl;
     cout << "Length: " << length << endl;

@@ -8,12 +8,12 @@ using namespace std;
 class Ship {
     public:
         Ship(); // Constructor to initialize the ship
-        setShipProperties(string, string, int); // Method to set ship properties
+        void setShipProperties(string, string, int); // Method to set ship properties
 
-        placeShip(Board&, int, int, string); // Method to place the ship on the board
-        attackShip(Board&, int, int); // Method to attack the ship
-        
-        getShipInfo(); // Method to get ship information
+        void placeShip(Board&, int, int, string); // Method to place the ship on the board
+        void attackShip(Board&, int, int); // Method to attack the ship
+
+        void displayShipInfo(); // Method to get ship information
 
     private:
         // Ship properties
@@ -22,7 +22,6 @@ class Ship {
         int length;
         int hitCount;
         bool isSunk;
-        
 }
 
 #endif // SHIP_H
