@@ -17,6 +17,7 @@ void Board::setBoardProperties(string name, int rows, int cols) {
     board = vector<vector<string>>(Rows, vector<string>(Columns, "[ ]")); // Initialize board with empty sea
 }
 
+// TODO: Move to UI
 void Board::displayBoard() {
 
     //display 2D vector
