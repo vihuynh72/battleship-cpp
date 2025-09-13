@@ -1,15 +1,17 @@
 #ifndef SHIP_H
 #define SHIP_H
 
+#include "../board/board.h"
+
 using namespace std;
 
-class Ship() {
+class Ship {
     public:
         Ship(); // Constructor to initialize the ship
         setShipProperties(string, string, int); // Method to set ship properties
 
-        placeShip(int, int, string); // Method to place the ship on the board
-        attackShip(int, int); // Method to attack the ship
+        placeShip(Board&, int, int, string); // Method to place the ship on the board
+        attackShip(Board&, int, int); // Method to attack the ship
         
         getShipInfo(); // Method to get ship information
 

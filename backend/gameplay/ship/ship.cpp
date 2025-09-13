@@ -19,11 +19,11 @@ void Ship::setShipProperties(string shipName, string shipDirection, int shipLeng
     isSunk = false;
 }
 
-Ship::placeShip(int x, int y, string dir) {
+Ship::placeShip(Board& board, int x, int y, string dir) {
     
 }
 
-Ship::attackShip(int x, int y) {
+Ship::attackShip(Board& board, int x, int y) {
 
 }
 
