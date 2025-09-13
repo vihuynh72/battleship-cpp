@@ -4,11 +4,19 @@
 using namespace std;
 
 Ship::Ship() {
-    
+    name = "Unnamed Ship";
+    direction = "horizontal";
+    length = 1;
+    hitCount = 0;
+    isSunk = false;
 }
 
-Ship::editShipName() {
-    
+void Ship::setShipProperties(string shipName, string shipDirection, int shipLength) {
+    name = shipName;
+    direction = shipDirection;
+    length = shipLength;
+    hitCount = 0;
+    isSunk = false;
 }
 
 Ship::placeShip(int x, int y, string dir) {

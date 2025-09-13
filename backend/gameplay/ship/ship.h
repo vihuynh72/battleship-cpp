@@ -6,7 +6,7 @@ using namespace std;
 class Ship() {
     public:
         Ship(); // Constructor to initialize the ship
-        editShipName(); // Method to edit the ship's name
+        setShipProperties(string, string, int); // Method to set ship properties
 
         placeShip(int, int, string); // Method to place the ship on the board
         attackShip(int, int); // Method to attack the ship
