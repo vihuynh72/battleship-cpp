@@ -28,5 +28,9 @@ Ship::attackShip(int x, int y) {
 }
 
 Ship::getShipInfo() {
-
+    cout << "Ship Name: " << name << endl;
+    cout << "Direction: " << direction << endl;
+    cout << "Length: " << length << endl;
+    cout << "Hit Count: " << hitCount << endl;
+    cout << "Is Sunk: " << (isSunk ? "Yes" : "No") << endl;
 }
