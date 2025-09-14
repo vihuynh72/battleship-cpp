@@ -13,11 +13,6 @@ void endGame();
 Board addShipToBoard(Board&, Ship&, int, int, std::string);
 Board attackShipOnBoard(Board&, int, int);
 
-// Helper functions
-bool checkEmptyCell(std::string);
-bool checkOutOfBounds(Board&, int, int);
-bool checkAvailableSpace(Board&, Ship&, int, int, std::string);
-
 // Check for sunk ships
 bool checkShipSunk(Ship&);
 bool checkAllShipsSunk(Board&);
