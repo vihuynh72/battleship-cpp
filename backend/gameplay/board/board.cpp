@@ -33,6 +33,15 @@ void Board::updateBoard(vector<vector<string>> newBoard) {
     board = newBoard;
 }
 
+// Method to get the number of rows and columns
+int Board::getRows() {
+    return Rows;
+}
+
+int Board::getColumns() {
+    return Columns;
+}
+
 // Method to increment total ship count
 void Board::incrementTotalShips() {
     totalShips++;
@@ -50,16 +59,4 @@ void Board::addShip(Ship &ship) {
 
 vector<Ship> Board::getShipList() {
     return shipList;
-}
-
-// TODO: Move to UI
-void Board::displayBoard() {
-
-    //display 2D vector
-    for (int i = 0; i < Rows; i++) {
-        for (int j = 0; j < Columns; j++) {
-            cout << board[i][j] << " ";
-        }
-        cout << endl;
-    }
 }

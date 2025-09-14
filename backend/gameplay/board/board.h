@@ -12,7 +12,9 @@ class Board {
         std::vector<std::vector<std::string>> getBoard(); // Method to get the board
         void setBoardProperties(std::string, int, int); // Method to set board properties
         void updateBoard(std::vector<std::vector<std::string>> newBoard); // Method to update the board
-        void displayBoard(); // Method to display the board
+
+        int getRows(); // Method to get the number of rows
+        int getColumns(); // Method to get the number of columns
          
         void incrementTotalShips(); // Method to increment total ship count
         int getTotalShips(); // Method to get total ship count
