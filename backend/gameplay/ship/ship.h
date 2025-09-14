@@ -3,21 +3,26 @@
 
 #include "../board/board.h"
 
-using namespace std;
-
 class Ship {
     public:
         Ship(); // Constructor to initialize the ship
-        void setShipProperties(string, string, int); // Method to set ship properties
-        void displayShipInfo(); // Method to get ship information
+        void setShipProperties(std::string, std::string, int); // Method to set ship properties
+        
 
+        void incrementHitCount(); // Method to increment hit count and check if sunk
+        bool checkIsSunk(); // Method to check if the ship is sunk
+
+        std::string getName(); // Method to get ship name
+        int getLength(); // Method to get ship length
+        int getHitCount(); // Method to get hit count
+        std::string getDirection(); // Method to get ship direction
     private:
         // Ship properties
-        string name;
-        string direction; // "horizontal" or "vertical"
+        std::string name;
+        std::string direction; // "horizontal" or "vertical"
         int length;
         int hitCount;
         bool isSunk;
-}
+};
 
 #endif // SHIP_H
