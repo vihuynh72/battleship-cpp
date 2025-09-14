@@ -20,7 +20,7 @@ void printBoard(Board& board) {
     printShipLists(board);
 }
 
-void printShipLists(Board& board) {
+void printShipList(Board& board) {
     cout << board.getPlayerName() << "'s Ships: " << endl;
     for (Ship& ship : board.getShipList()) {
         cout << "------------------------" << endl;
