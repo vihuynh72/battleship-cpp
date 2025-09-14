@@ -19,14 +19,6 @@ void Ship::setShipProperties(string shipName, string shipDirection, int shipLeng
     isSunk = false;
 }
 
-Ship::placeShip(Board& board, int x, int y, string dir) {
-    
-}
-
-Ship::attackShip(Board& board, int x, int y) {
-
-}
-
 // TODO: Move to UI
 Ship::displayShipInfo() {
     cout << "Ship Name: " << name << endl;
