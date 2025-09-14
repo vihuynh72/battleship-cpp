@@ -14,7 +14,7 @@ void displayHome() {
     cout << "========================================" << endl;
     cout << "   Welcome to the Ultimate Battleship  " << endl;
     cout << "========================================" << endl;
-    cout << "1. Start Game" << endl;
+    cout << "1. Quick Start" << endl;
     cout << "2. Setup Game" << endl;
     cout << "3. Exit" << endl;
     cout << "Please select an option (1-3): ";
@@ -22,8 +22,8 @@ void displayHome() {
     int choice;
     cin >> choice;
     switch (choice) {
-        case 1:
-            startGame();
+        case 1: // Implement default setting here
+            // startGame(player1Board, player2Board);
             break;
         case 2:
             displaySetup();
@@ -70,11 +70,16 @@ void displaySetup() {
 
     cout << "3. Set up ships for each player" << endl;
     cout << "Each person will have 5 ships of varying sizes." << endl;
-    for (int i = 0; i < 2; i++) {
-        cout << "For player " << i + 1 << ":" << endl;
-        Ship ship = shipSetup(player1Board);
-        cout << "Ship " << (i + 1) << " - Name: " << ship.getName() << "\n Direction: " << ship.getDirection() << "\n Length: " << ship.getLength() << endl;
-      }
+    cout << "Placing ships for " << player1 << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << "Placing ship " << i + 1 << endl;
+        shipSetup(player1Board);
+    }
+    cout << "Placing ships for " << player2 << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << "Placing ship " << i + 1 << endl;
+        shipSetup(player2Board);
+    }
 
     cout << "========================================" << endl;
 
@@ -83,7 +88,7 @@ void displaySetup() {
     string choice;
     cin >> choice;
     if (choice == "yes") {
-        startGame();
+        startGame(player1Board, player2Board);
     } else {
         displayHome();
     }
