@@ -18,7 +18,21 @@ void endGame() {
 // Main Game Mechanics functions
 
 Board addShipToBoard(Board &board, Ship &ship, int row, int col, string direction) {
-    
+    // If the space is available, place the ship with the marker as the first character of the ship name
+    if (checkAvailableSpace(board, ship, row, col, direction)) {
+        string shipSymbol = "[" + ship.getName().substr(0, 1) + "]"; // e.g., "[C]" for "Carrier"
+        if (direction == "horizontal") {
+            for (int i = 0; i < ship.getLength(); i++) {
+                board.getBoard()[row][col + i] = shipSymbol;
+            }
+        } else if (direction == "vertical") {
+            for (int i = 0; i < ship.getLength(); i++) {
+                board.getBoard()[row + i][col] = shipSymbol;
+            }
+        }
+        board.addShip(ship);
+        return board;
+    }
 }
 
 Board attackShipOnBoard(Board &board, int row, int col) {
