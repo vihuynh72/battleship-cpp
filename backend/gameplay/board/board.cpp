@@ -33,7 +33,11 @@ void Board::updateBoard(vector<vector<string>> newBoard) {
     board = newBoard;
 }
 
-// Method to get the number of rows and columns
+// Accessor methods
+string Board::getPlayerName() {
+    return playerName;
+}
+
 int Board::getRows() {
     return Rows;
 }

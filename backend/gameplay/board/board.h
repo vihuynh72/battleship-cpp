@@ -13,6 +13,7 @@ class Board {
         void setBoardProperties(std::string, int, int); // Method to set board properties
         void updateBoard(std::vector<std::vector<std::string>> newBoard); // Method to update the board
 
+        std::string getPlayerName(); // Method to get player name
         int getRows(); // Method to get the number of rows
         int getColumns(); // Method to get the number of columns
          
