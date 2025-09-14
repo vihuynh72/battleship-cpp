@@ -9,10 +9,6 @@ class Ship {
     public:
         Ship(); // Constructor to initialize the ship
         void setShipProperties(string, string, int); // Method to set ship properties
-
-        void placeShip(Board&, int, int, string); // Method to place the ship on the board
-        void attackShip(Board&, int, int); // Method to attack the ship
-
         void displayShipInfo(); // Method to get ship information
 
     private:
