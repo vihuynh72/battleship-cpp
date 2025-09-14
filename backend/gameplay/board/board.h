@@ -9,6 +9,7 @@
 class Board {
     public:
         Board(); // Constructor to initialize the board
+        std::vector<std::vector<std::string>> getBoard(); // Method to get the board
         void setBoardProperties(std::string, int, int); // Method to set board properties
         void displayBoard(); // Method to display the board
          

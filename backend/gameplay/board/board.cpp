@@ -15,6 +15,11 @@ Board::Board() {
     board = vector<vector<string>>(10, vector<string>(10, "[ ]")); // "[ ]" represents empty sea
 }
 
+// Method to get the board
+std::vector<std::vector<std::string>> Board::getBoard() {
+    return board;
+}
+
 // Method to set board properties
 void Board::setBoardProperties(string name, int rows, int cols) {
     playerName = name;
