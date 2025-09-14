@@ -27,7 +27,7 @@ void Ship::incrementHitCount() {
     }
 }
 
-bool Ship::isSunk() {
+bool Ship::checkIsSunk() {
     return isSunk;
 }
 

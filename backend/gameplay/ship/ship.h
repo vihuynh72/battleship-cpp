@@ -1,7 +1,7 @@
 #ifndef SHIP_H
 #define SHIP_H
 
-#include "../board/board.h"
+#include <string>
 
 class Ship {
     public:
