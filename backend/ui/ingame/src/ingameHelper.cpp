@@ -17,7 +17,7 @@ void printBoard(Board& board) {
         cout << endl;
     }
     cout << endl;
-    printShipLists(board);
+    printShipList(board);
 }
 
 void printShipList(Board& board) {
