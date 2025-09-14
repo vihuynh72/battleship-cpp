@@ -18,7 +18,7 @@ void endGame() {
 // Main Game Mechanics functions
 
 Board addShipToBoard(Board &board, Ship &ship, int row, int col, string direction) {
-    return board; // Placeholder, actual implementation needed
+    
 }
 
 Board attackShipOnBoard(Board &board, int row, int col) {
@@ -38,7 +38,13 @@ bool checkOutOfBounds(Board &board, int row, int col) {
 }
 
 bool checkAvailableSpace(Board &board, Ship &ship, int row, int col, string direction) {
-    // The logic is to have the ship if horizontal expand to right, vertical expand downwards
+    /*
+    Check if the ship can be placed at the given position without going out of bounds or overlapping other ships.
+
+    1. Check if the ship fits within the board boundaries based on its direction and length. Horizontal ships extend to the right, vertical ships extend downwards.
+
+    2. Check each cell the ship would occupy to ensure it is empty (i.e., contains "[ ]").
+    */
     if (direction == "horizontal") {
         for (int i = 0; i < ship.getLength(); i++) {
             if (checkOutOfBounds(board, row, col + i) || !checkEmptyCell(board.getBoard()[row][col + i])) {
@@ -58,7 +64,6 @@ bool checkAvailableSpace(Board &board, Ship &ship, int row, int col, string dire
 }
 
 // Check for sunk ships
-
 bool checkShipSunk(Ship &ship) {
     return ship.checkIsSunk();    
 }
