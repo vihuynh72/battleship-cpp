@@ -1,5 +1,6 @@
 #include "../include/startgame.h"
 #include "../include/ingameHelper.h"
+#include "../include/ingame.h"
 #include "../../../gameplay/board/board.h"
 #include "../../../gameplay/ship/ship.h"
 
@@ -13,4 +14,6 @@ void startGame(Board& player1, Board& player2) {
     cout << "Let the battle begin!" << endl;
     printBoard(player1);
     printBoard(player2);
+    
+    ingame(player1, player2);
 }
