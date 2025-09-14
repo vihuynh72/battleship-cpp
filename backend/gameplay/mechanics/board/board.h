@@ -1,5 +1,5 @@
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef MECHANICS_BOARD_H
+#define MECHANICS_BOARD_H
 
 #include <string>
 #include "../../board/board.h"
@@ -7,4 +7,4 @@
 
 bool checkAllShipsSunk(Board&);
   
-#endif // BOARD_H
+#endif // MECHANICS_BOARD_H
