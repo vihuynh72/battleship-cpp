@@ -1,5 +1,6 @@
 #include "board.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ Board::Board() {
 }
 
 // Method to get the board
-std::vector<std::vector<std::string>> Board::getBoard() {
+vector<vector<string>> Board::getBoard() {
     return board;
 }
 
@@ -26,6 +27,10 @@ void Board::setBoardProperties(string name, int rows, int cols) {
     Rows = rows;
     Columns = cols;
     board = vector<vector<string>>(Rows, vector<string>(Columns, "[ ]")); // Initialize board with empty sea
+}
+
+void Board::updateBoard(vector<vector<string>> newBoard) {
+    board = newBoard;
 }
 
 // Method to increment total ship count
@@ -41,6 +46,10 @@ int Board::getTotalShips() {
 void Board::addShip(Ship &ship) {
     shipList.push_back(ship);
     incrementTotalShips();
+}
+
+vector<Ship> Board::getShipList() {
+    return shipList;
 }
 
 // TODO: Move to UI

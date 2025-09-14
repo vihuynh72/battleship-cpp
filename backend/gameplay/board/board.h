@@ -11,6 +11,7 @@ class Board {
         Board(); // Constructor to initialize the board
         std::vector<std::vector<std::string>> getBoard(); // Method to get the board
         void setBoardProperties(std::string, int, int); // Method to set board properties
+        void updateBoard(std::vector<std::vector<std::string>> newBoard); // Method to update the board
         void displayBoard(); // Method to display the board
          
         void incrementTotalShips(); // Method to increment total ship count

@@ -6,8 +6,8 @@
 #include "../../board/board.h"
 #include "../../ship/ship.h"
 
-Board addShipToBoard(Board&, Ship&, int, int, std::string);
-Board attackShipOnBoard(Board&, int, int);
+void addShipToBoard(Board&, Ship&, int, int, std::string);
+void attackShipOnBoard(Board&, int, int);
 bool checkShipSunk(Ship&);
 
 #endif // SHIP_H
