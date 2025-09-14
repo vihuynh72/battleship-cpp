@@ -33,11 +33,12 @@ bool checkOverlap(Board &board, Ship &ship, int row, int col, string direction) 
 
 // Check for sunk ships
 
-
 bool checkShipSunk(Ship &ship) {
-    
+    return ship.isSunk();    
 }
 
 bool checkAllShipsSunk(Board &board) {
-    
+    if (board.getTotalShips() == 0) {
+        return true; // No ships on board
+    }
 }
