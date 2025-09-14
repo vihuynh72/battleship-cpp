@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "../ship/ship.h"
+#include "../../ship/include/ship.h"
 
 #include <string>
 #include <vector>
