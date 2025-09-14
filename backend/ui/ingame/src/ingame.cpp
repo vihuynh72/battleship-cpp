@@ -9,7 +9,7 @@
 using namespace std;
 
 void ingame(Board& player1, Board& player2) {
-
+    
 }
 
 void playerTurn(Board& player) {
