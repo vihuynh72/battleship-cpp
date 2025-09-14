@@ -3,8 +3,8 @@
 #define SHIP_H
 
 #include <string>
-#include "../board/board.h"
-#include "../ship/ship.h"
+#include "../../board/board.h"
+#include "../../ship/ship.h"
 
 Board addShipToBoard(Board&, Ship&, int, int, std::string);
 Board attackShipOnBoard(Board&, int, int);
