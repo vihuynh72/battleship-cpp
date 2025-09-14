@@ -9,12 +9,6 @@
 void startNewGame();
 void endGame();
 
-// Main Game Mechanics functions
-Board addShipToBoard(Board&, Ship&, int, int, std::string);
-Board attackShipOnBoard(Board&, int, int);
-
-// Check for sunk ships
-bool checkShipSunk(Ship&);
 bool checkAllShipsSunk(Board&);
 
 #endif // MECHANICS_H
