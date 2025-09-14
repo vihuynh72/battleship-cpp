@@ -1,5 +1,5 @@
-#include "board.h"
-#include "ship.h"
+#include "../../board/board.h"
+#include "../../ship/ship.h"
 #include <iostream>
 #include <string>
 
