@@ -1,4 +1,5 @@
-#include "../../board/board.h"
+#include "../include/board.h"
+#include "../../../board/include/board.h"
 #include <iostream>
 
 using namespace std;
