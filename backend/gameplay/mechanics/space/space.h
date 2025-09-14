@@ -2,6 +2,8 @@
 #define  SPACE_H
 
 #include <string>
+#include "../board/board.h"
+#include "../ship/ship.h"
 
 bool checkEmptyCell(std::string);
 bool checkOutOfBounds(Board&, int, int);
