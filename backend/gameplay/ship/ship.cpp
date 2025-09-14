@@ -19,11 +19,31 @@ void Ship::setShipProperties(string shipName, string shipDirection, int shipLeng
     isSunk = false;
 }
 
-// TODO: Move to UI
-Ship::displayShipInfo() {
-    cout << "Ship Name: " << name << endl;
-    cout << "Direction: " << direction << endl;
-    cout << "Length: " << length << endl;
-    cout << "Hit Count: " << hitCount << endl;
-    cout << "Is Sunk: " << (isSunk ? "Yes" : "No") << endl;
+// Method to increment hit count and check if sunk
+void Ship::incrementHitCount() {
+    hitCount++;
+    if (hitCount >= length) {
+        isSunk = true;
+    }
+}
+
+bool Ship::checkIsSunk() {
+    return isSunk;
+}
+
+// Other getters methods for ship properties
+string Ship::getName() {
+    return name;
+}
+
+int Ship::getLength() {
+    return length;
+}
+
+int Ship::getHitCount() {
+    return hitCount;
+}
+
+std::string Ship::getDirection() {
+    return direction;
 }
