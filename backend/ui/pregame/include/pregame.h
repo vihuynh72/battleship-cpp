@@ -11,8 +11,4 @@ void displayHome();
 void displaySetup();
 void startGame(Board&, Board&);
 
-int dimensionSetup();
-std::string playerSetup();
-Ship shipSetup(Board&);
-
 #endif // PREGAME_H
