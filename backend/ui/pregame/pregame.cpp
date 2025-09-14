@@ -89,11 +89,6 @@ void displaySetup() {
   }
 
 void startGame() {
-
-}
-
-void gameSetup() {
-
 }
 
 int dimensionSetup() {

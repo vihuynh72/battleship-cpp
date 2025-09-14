@@ -11,7 +11,6 @@ void displayHome();
 void displaySetup();
 void startGame(Board&, Board&);
 
-void gameSetup();
 int dimensionSetup();
 std::string playerSetup();
 Ship shipSetup(Board&);
