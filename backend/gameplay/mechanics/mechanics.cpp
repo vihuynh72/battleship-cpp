@@ -16,11 +16,9 @@ void endGame() {
 }
 
 // Main Game Mechanics functions
-
 Board addShipToBoard(Board &board, Ship &ship, int row, int col, string direction) {
-    // If the space is available, place the ship with the marker as the first character of the ship name
     if (checkAvailableSpace(board, ship, row, col, direction)) {
-        string shipSymbol = "[" + ship.getName().substr(0, 1) + "]"; // e.g., "[C]" for "Carrier"
+        string shipSymbol = "[" + ship.getName().substr(0, 1) + "]"; // e.g., "[W]" for "Wok"
         if (direction == "horizontal") {
             for (int i = 0; i < ship.getLength(); i++) {
                 board.getBoard()[row][col + i] = shipSymbol;
@@ -36,7 +34,14 @@ Board addShipToBoard(Board &board, Ship &ship, int row, int col, string directio
 }
 
 Board attackShipOnBoard(Board &board, int row, int col) {
-    return board; // Placeholder, actual implementation needed
+    if (!checkOutOfBounds(board, row, col)) {
+        if (!checkEmptyCell(board.getBoard()[row][col])) {
+            board.getBoard()[row][col] = "[X]"; // Hit
+        } else {
+            board.getBoard()[row][col] = "[.]"; // Miss
+        }
+    }
+    return board;
 }
 
 // Helper functions
