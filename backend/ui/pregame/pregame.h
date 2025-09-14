@@ -2,15 +2,18 @@
 #define PREGAME_H
 
 #include "../../gameplay/board/board.h"
+#include "../../gameplay/ship/ship.h"
 
 #include <string>
 #include <vector>
 
 void displayHome();
 void displaySetup();
-void startGame();
+void startGame(Board&, Board&);
 
 void gameSetup();
-void shipSetup();
+int dimensionSetup();
+std::string playerSetup();
+Ship shipSetup(Board&);
 
 #endif // PREGAME_H
