@@ -1,8 +1,8 @@
 #ifndef SETUP_H
 #define SETUP_H
 
-#include "../../gameplay/board/board.h"
-#include "../../gameplay/ship/ship.h"
+#include "../../../gameplay/board/include/board.h"
+#include "../../../gameplay/ship/include/ship.h"
 
 #include <string>
 #include <vector>

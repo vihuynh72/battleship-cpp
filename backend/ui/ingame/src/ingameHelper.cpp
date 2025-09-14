@@ -1,6 +1,6 @@
 #include "../include/ingameHelper.h"
-#include "../../../gameplay/board/board.h"
-#include "../../../gameplay/ship/ship.h"
+#include "../../../gameplay/board/include/board.h"
+#include "../../../gameplay/ship/include/ship.h"
 
 #include <iostream>
 #include <string>
