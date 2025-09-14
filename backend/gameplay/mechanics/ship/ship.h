@@ -1,6 +1,6 @@
 //Migrate the ship functions from mechanics to here
-#ifndef SHIP_H
-#define SHIP_H
+#ifndef MECHANICS_SHIP_H
+#define MECHANICS_SHIP_H
 
 #include <string>
 #include "../../board/board.h"
@@ -10,4 +10,4 @@ void addShipToBoard(Board&, Ship&, int, int, std::string);
 void attackShipOnBoard(Board&, int, int);
 bool checkShipSunk(Ship&);
 
-#endif // SHIP_H
+#endif // MECHANICS_SHIP_H
