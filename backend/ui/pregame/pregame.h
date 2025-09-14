@@ -10,4 +10,7 @@ void displayHome();
 void displaySetup();
 void startGame();
 
+void gameSetup();
+void shipSetup();
+
 #endif // PREGAME_H

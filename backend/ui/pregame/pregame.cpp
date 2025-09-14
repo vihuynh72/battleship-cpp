@@ -44,3 +44,11 @@ void displaySetup() {
 void startGame() {
 
 }
+
+void gameSetup() {
+
+}
+
+void shipSetup() {
+
+}
