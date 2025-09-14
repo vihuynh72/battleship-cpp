@@ -27,6 +27,7 @@ class Board {
         int Columns;
 
         // Ship Count
+        int totalShips;
         std::vector<Ship> shipList; // Vector to hold ships on the board
 
         // 2D vectors to represent the board for dynamic sizing

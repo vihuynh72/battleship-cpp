@@ -8,6 +8,10 @@ Board::Board() {
     playerName = "Unnamed Player";
     Rows = 10;
     Columns = 10;
+
+    totalShips = 0;
+
+    // Initialize a 10x10 board with empty sea
     board = vector<vector<string>>(10, vector<string>(10, "[ ]")); // "[ ]" represents empty sea
 }
 
@@ -24,6 +28,7 @@ void Board::incrementTotalShips() {
     totalShips++;
 }
 
+// Method to get total ship count
 int Board::getTotalShips() {
     return totalShips;
 }
