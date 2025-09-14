@@ -38,6 +38,11 @@ int Board::getTotalShips() {
     return totalShips;
 }
 
+void Board::addShip(Ship &ship) {
+    shipList.push_back(ship);
+    incrementTotalShips();
+}
+
 // TODO: Move to UI
 void Board::displayBoard() {
 
