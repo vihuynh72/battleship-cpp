@@ -23,8 +23,11 @@ Board attackShipOnBoard(Board &board, int row, int col) {
 
 // Helper functions
 
-bool checkOutOfBounds(Board &board, Ship &ship, int row, int col) {
-    
+bool checkOutOfBounds(Board &board, int row, int col) {
+    if (row < 0 || row >= board.getBoard().size() || col < 0 || col >= board.getBoard()[0].size()) {
+        return true; // Out of bounds
+    }
+    return false; // Within bounds
 }
 
 bool checkOverlap(Board &board, Ship &ship, int row, int col, string direction) {

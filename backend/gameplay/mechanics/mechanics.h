@@ -12,7 +12,7 @@ Board addShipToBoard(Board&, Ship&, int, int, string);
 Board attackShipOnBoard(Board&, int, int);
 
 // Helper functions
-bool checkOutOfBounds(Board&, Ship&, int, int);
+bool checkOutOfBounds(Board&, int, int);
 bool checkOverlap(Board&, Ship&, int, int, string);
 
 // Check for sunk ships
