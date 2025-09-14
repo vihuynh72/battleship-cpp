@@ -3,8 +3,8 @@
 #define MECHANICS_SHIP_H
 
 #include <string>
-#include "../../board/board.h"
-#include "../../ship/ship.h"
+#include "../../../board/include/board.h"
+#include "../../../ship/include/ship.h"
 
 void addShipToBoard(Board&, Ship&, int, int, std::string);
 void attackShipOnBoard(Board&, int, int);

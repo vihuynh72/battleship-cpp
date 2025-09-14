@@ -1,4 +1,4 @@
-#include "ship.h"
+#include "../include/ship.h"
 #include <iostream>
 
 using namespace std;

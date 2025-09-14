@@ -1,6 +1,7 @@
-#include "../../board/board.h"
-#include "../../ship/ship.h"
-#include "../space/space.h"
+#include "../include/ship.h"
+#include "../../../board/include/board.h"
+#include "../../../ship/include/ship.h"
+#include "../../space/include/space.h"
 #include <iostream>
 #include <string>
 

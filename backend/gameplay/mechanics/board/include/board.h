@@ -2,8 +2,8 @@
 #define MECHANICS_BOARD_H
 
 #include <string>
-#include "../../board/board.h"
-#include "../../ship/ship.h"
+#include "../../../board/include/board.h"
+#include "../../../ship/include/ship.h"
 
 bool checkAllShipsSunk(Board&);
   

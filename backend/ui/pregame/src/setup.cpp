@@ -1,8 +1,8 @@
 #include "../include/setup.h"
-#include "../../gameplay/board/board.h"
-#include "../../gameplay/ship/ship.h"
-#include "../../gameplay/mechanics/ship/ship.h"
-#include "../../gameplay/mechanics/space/space.h"
+#include "../../../gameplay/board/include/board.h"
+#include "../../../gameplay/ship/include/ship.h"
+#include "../../../gameplay/mechanics/ship/include/ship.h"
+#include "../../../gameplay/mechanics/space/include/space.h"
 
 #include <iostream>
 

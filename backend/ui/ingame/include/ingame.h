@@ -1,8 +1,8 @@
 #ifndef INGAME_H
 #define INGAME_H
 
-#include "../../../gameplay/board/board.h"
-#include "../../../gameplay/ship/ship.h"
+#include "../../../gameplay/board/include/board.h"
+#include "../../../gameplay/ship/include/ship.h"
 
 void ingame(Board&, Board&);
 

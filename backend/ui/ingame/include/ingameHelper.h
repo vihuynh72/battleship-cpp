@@ -1,7 +1,7 @@
 #ifndef INGAMEHELPER_H
 #define INGAMEHELPER_H
 
-#include "../../../gameplay/board/board.h"
+#include "../../../gameplay/board/include/board.h"
 
 void printBoard(Board&);
 void printShipList(Board&);

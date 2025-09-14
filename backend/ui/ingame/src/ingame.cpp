@@ -1,5 +1,5 @@
-#include "../../../gameplay/board/board.h"
-#include "../../../gameplay/ship/ship.h"
+#include "../../../gameplay/board/include/board.h"
+#include "../../../gameplay/ship/include/ship.h"
 #include "../include/ingame.h"
 #include "../include/ingameHelper.h"
 
