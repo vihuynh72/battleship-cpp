@@ -17,7 +17,7 @@ Board::Board() {
 }
 
 // Method to get the board
-vector<vector<string>> Board::getBoard() {
+vector<vector<string>>& Board::getBoard() {
     return board;
 }
 

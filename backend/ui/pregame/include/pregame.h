@@ -9,6 +9,5 @@
 
 void displayHome();
 void displaySetup();
-void startGame(Board&, Board&);
 
 #endif // PREGAME_H

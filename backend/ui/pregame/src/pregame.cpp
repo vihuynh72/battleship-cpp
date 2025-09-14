@@ -93,7 +93,3 @@ void displaySetup() {
         displayHome();
     }
   }
-
-void startGame() {
-
-}
