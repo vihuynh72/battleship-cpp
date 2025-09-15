@@ -45,7 +45,8 @@ void displaySetup() {
     cout << "            Game Setup Menu             " << endl;
     cout << "========================================" << endl;
     cout << "               Game Setup               " << endl;
-    cout << "1. Set up board dimensions" << endl;
+    cout << "----------------------------------------" << endl;
+    cout << "1. Set up board dimensions\n" << endl;
     cout << "Number of Rows (min 5, max 26): ";
 
     int rows = dimensionSetup();
@@ -53,8 +54,9 @@ void displaySetup() {
     cout << "Number of Columns (min 5, max 26): ";
 
     int cols = dimensionSetup();
-
-    cout << "2. Set up player names" << endl;
+    
+    cout << "----------------------------------------" << endl;
+    cout << "2. Set up player names\n" << endl;
     cout << "Enter Player 1 Name: ";
 
     string player1 = playerSetup();
@@ -69,18 +71,13 @@ void displaySetup() {
     Board player2Board;
     player2Board.setBoardProperties(player2, rows, cols);
 
+    cout << "----------------------------------------" << endl;
     cout << "3. Set up ships for each player" << endl;
-    cout << "Each person will have 5 ships of varying sizes." << endl;
-    cout << "Placing ships for " << player1 << endl;
-    for (int i = 0; i < 5; i++) {
-        cout << "Placing ship " << i + 1 << endl;
-        shipSetup(player1Board);
-    }
-    cout << "Placing ships for " << player2 << endl;
-    for (int i = 0; i < 5; i++) {
-        cout << "Placing ship " << i + 1 << endl;
-        shipSetup(player2Board);
-    }
+    cout << "\nEach person will have 5 ships of varying sizes." << endl;
+    cout << "Placing ships for " << player1 << "\n" << endl;
+    
+    placeShip(player1Board, rows, cols);
+    placeShip(player2Board, rows, cols);
 
     cout << "========================================" << endl;
 

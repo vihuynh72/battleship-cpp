@@ -1,0 +1,3 @@
+/workspaces/battleship-cpp/backend/build/CMakeFiles/battleship.dir
+/workspaces/battleship-cpp/backend/build/CMakeFiles/edit_cache.dir
+/workspaces/battleship-cpp/backend/build/CMakeFiles/rebuild_cache.dir
