@@ -10,5 +10,6 @@
 int dimensionSetup();
 std::string playerSetup();
 Ship shipSetup(Board&);
+void placeShip(Board&, int, int);
 
 #endif // SETUP_H
