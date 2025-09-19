@@ -30,6 +30,7 @@ include_directories(
     gameplay/mechanics/board/include
     gameplay/mechanics/ship/include
     gameplay/mechanics/space/include
+    gameplay/mechanics/bot/include
 )
 
 # Source files (relative to backend/)
@@ -45,6 +46,7 @@ set(SOURCES
     gameplay/mechanics/space/src/space.cpp
     gameplay/mechanics/ship/src/ship.cpp
     gameplay/mechanics/board/src/board.cpp
+    gameplay/mechanics/bot/src/bot.cpp
 )
 
 # Create the main executable
@@ -67,6 +69,7 @@ set(GAMEPLAY_SOURCES
     gameplay/mechanics/space/src/space.cpp
     gameplay/mechanics/ship/src/ship.cpp
     gameplay/mechanics/board/src/board.cpp
+    gameplay/mechanics/bot/src/bot.cpp
 )
 
 # Uncomment these lines if you want to build as separate libraries
