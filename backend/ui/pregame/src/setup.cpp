@@ -24,6 +24,20 @@ string playerSetup() {
     cin >> playerName;
     return playerName;
 }
+
+string directionSetup() {
+    string direction;
+    cout << "Enter ship direction (h for horizontal/v for vertical): ";
+    cin >> direction;
+    direction = (direction == "h" || direction == "H") ? "horizontal" : 
+                (direction == "v" || direction == "V") ? "vertical" : "";
+
+    if (direction == "") {
+        cout << "Invalid direction. Please enter 'h' or 'v'.\n" << endl;
+        return directionSetup();
+    }
+    return direction;
+}
   
 Ship shipSetup(Board& board) {
     string name;
@@ -33,15 +47,8 @@ Ship shipSetup(Board& board) {
     
     cout << "Enter ship name: ";
     cin >> name;
-    cout << "Enter ship direction (h for horizontal/v for vertical): ";
-    cin >> direction;
-    direction = (direction == "h" || direction == "H") ? "horizontal" : 
-                (direction == "v" || direction == "V") ? "vertical" : "";
-
-    if (direction == "") {
-        cout << "Invalid direction. Please enter 'h' or 'v'.\n" << endl;
-        return shipSetup(board);
-    }
+    
+    direction = directionSetup();
 
     cout << "Enter ship length (2-5): ";
     cin >> length;
