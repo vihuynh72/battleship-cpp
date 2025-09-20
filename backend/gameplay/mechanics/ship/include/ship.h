@@ -9,5 +9,6 @@
 void addShipToBoard(Board&, Ship&, int, int, std::string);
 void attackShipOnBoard(Board&, int, int);
 bool checkShipSunk(Ship&);
+std::vector<Ship> getDefaultShips();
 
 #endif // MECHANICS_SHIP_H

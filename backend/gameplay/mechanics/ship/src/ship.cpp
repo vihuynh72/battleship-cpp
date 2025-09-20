@@ -42,3 +42,14 @@ void attackShipOnBoard(Board &board, int row, int col) {
 bool checkShipSunk(Ship &ship) {
     return ship.checkIsSunk();    
 }
+
+vector<Ship> getDefaultShips() { // Default ships with predefined names and lengths
+    vector<Ship> defaultShips;
+    defaultShips.push_back(Ship("Carrier", "horizontal", 5));
+    defaultShips.push_back(Ship("Battleship", "horizontal", 4));
+    defaultShips.push_back(Ship("Destroyer", "horizontal", 3));
+    defaultShips.push_back(Ship("Submarine", "horizontal", 3));
+    defaultShips.push_back(Ship("Frigate", "horizontal", 2));
+
+    return defaultShips;
+}
