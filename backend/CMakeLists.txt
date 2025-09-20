@@ -37,7 +37,7 @@ include_directories(
 set(SOURCES
     app/main.cpp
     ui/pregame/src/pregame.cpp
-    ui/pregame/src/setup.cpp
+    ui/pregame/src/pregameHelper.cpp
     ui/ingame/src/startgame.cpp
     ui/ingame/src/ingame.cpp
     ui/ingame/src/ingameHelper.cpp
@@ -56,7 +56,7 @@ add_executable(battleship ${SOURCES})
 # UI Library
 set(UI_SOURCES
     ui/pregame/src/pregame.cpp
-    ui/pregame/src/setup.cpp
+    ui/pregame/src/pregameHelper.cpp
     ui/ingame/src/startgame.cpp
     ui/ingame/src/ingame.cpp
     ui/ingame/src/ingameHelper.cpp

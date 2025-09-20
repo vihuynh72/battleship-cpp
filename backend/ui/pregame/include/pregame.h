@@ -10,4 +10,6 @@
 void displayHome();
 void displaySetup();
 
+void quickGame();
+
 #endif // PREGAME_H

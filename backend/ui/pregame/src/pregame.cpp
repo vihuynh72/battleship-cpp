@@ -1,9 +1,12 @@
 #include "../include/pregame.h"
-#include "../include/setup.h"
+#include "../include/pregameHelper.h"
 #include "../../ingame/include/startgame.h"
 #include "../../../gameplay/board/include/board.h"
 #include "../../../gameplay/ship/include/ship.h"
 #include "../../../gameplay/mechanics/bot/include/bot.h"
+#include "../../../gameplay/mechanics/ship/include/ship.h"
+#include "../../ingame/include/ingameHelper.h"
+
 
 #include <iostream>
 #include <string>
@@ -16,7 +19,7 @@ void displayHome() {
     cout << "========================================" << endl;
     cout << "   Welcome to the Ultimate Battleship  " << endl;
     cout << "========================================" << endl;
-    cout << "1. Quick Start" << endl;
+    cout << "1. Quick Game (10x10 with default 5 ships)" << endl;
     cout << "2. Setup Game" << endl;
     cout << "3. Exit" << endl;
     cout << "Please select an option (1-3): ";
@@ -24,8 +27,8 @@ void displayHome() {
     int choice;
     cin >> choice;
     switch (choice) {
-        case 1: // Implement default setting here
-            // startGame(player1Board, player2Board);
+        case 1:
+            quickGame();
             break;
         case 2:
             displaySetup();
@@ -48,13 +51,10 @@ void displaySetup() {
     cout << "               Game Setup               " << endl;
     cout << "----------------------------------------" << endl;
     cout << "1. Set up board dimensions\n" << endl;
-    cout << "Number of Rows (min 5, max 26): ";
-
-    int rows = dimensionSetup();
-
-    cout << "Number of Columns (min 5, max 26): ";
-
-    int cols = dimensionSetup();
+    
+    vector<int> dimensions = dimensionSetup();
+    int rows = dimensions[0];
+    int cols = dimensions[1];
     
     cout << "----------------------------------------" << endl;
     cout << "2. Set up player names\n" << endl;
@@ -93,4 +93,49 @@ void displaySetup() {
     } else {
         displayHome();
     }
-  }
+}
+
+
+void quickGame() {
+    cout << "=================================" << endl;
+    cout << "            Quick Game           \n" << endl;
+
+    cout << "Enter Player 1 Name: ";
+    string player1 = playerSetup();
+    cout << "Enter Player 2 Name: ";
+    string player2 = playerSetup();
+
+    Board player1Board;
+    player1Board.setBoardProperties(player1, 10, 10);
+    Board player2Board;
+    player2Board.setBoardProperties(player2, 10, 10);
+    
+    cout << "---------------------------------\n" << endl;
+    cout << "Do you want to place your ships manually? (y/n): ";
+    string choice;
+    cin >> choice;
+
+    if (choice == "y") {
+        vector<Ship> defaultShips = getDefaultShips();
+        // get coordinate and place each ship
+        for (Ship& ship : defaultShips) {
+            cout << "Placing ship: " << ship.getName() << " (Length: " << ship.getLength() << ")\n" << endl;
+
+            string direction = directionSetup();
+            ship.setShipProperties(ship.getName(), direction, ship.getLength());
+
+            vector<int> shipCoord = coordinateSetup(player1Board, ship);
+            int ship_y_coord = shipCoord[0];
+            int ship_x_coord = shipCoord[1];
+
+            addShipToBoard(player1Board, ship, ship_y_coord, ship_x_coord, ship.getDirection());
+            printBoard(player1Board);
+            cout << "Ship placed successfully!\n" << endl;
+        }
+        
+    } else {
+        randomizeShipOnBoard(player1Board);
+    }
+    randomizeShipOnBoard(player2Board);
+
+}

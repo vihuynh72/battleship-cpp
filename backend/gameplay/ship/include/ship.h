@@ -6,6 +6,7 @@
 class Ship {
     public:
         Ship(); // Constructor to initialize the ship
+        Ship(std::string, std::string, int); // Overloaded constructor with parameters
         void setShipProperties(std::string, std::string, int); // Method to set ship properties
         
 

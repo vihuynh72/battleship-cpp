@@ -11,6 +11,14 @@ Ship::Ship() {
     isSunk = false;
 }
 
+Ship::Ship(string shipName, string shipDirection, int shipLength) {
+    name = shipName;
+    direction = shipDirection;
+    length = shipLength;
+    hitCount = 0;
+    isSunk = false;
+}
+
 void Ship::setShipProperties(string shipName, string shipDirection, int shipLength) {
     name = shipName;
     direction = shipDirection;
