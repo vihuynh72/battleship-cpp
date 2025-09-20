@@ -16,7 +16,7 @@ void displayHome() {
     cout << "========================================" << endl;
     cout << "   Welcome to the Ultimate Battleship  " << endl;
     cout << "========================================" << endl;
-    cout << "1. Quick Start" << endl;
+    cout << "1. Quick Game (10x10 with default 5 ships)" << endl;
     cout << "2. Setup Game" << endl;
     cout << "3. Exit" << endl;
     cout << "Please select an option (1-3): ";
@@ -24,8 +24,8 @@ void displayHome() {
     int choice;
     cin >> choice;
     switch (choice) {
-        case 1: // Implement default setting here
-            // startGame(player1Board, player2Board);
+        case 1:
+            quickGame();
             break;
         case 2:
             displaySetup();
@@ -90,4 +90,33 @@ void displaySetup() {
     } else {
         displayHome();
     }
-  }
+}
+
+
+void quickGame() {
+    cout << "=================================" << endl;
+    cout << "            Quick Game           \n" << endl;
+
+    cout << "Enter Player 1 Name: ";
+    string player1 = playerSetup();
+    cout << "Enter Player 2 Name: ";
+    string player2 = playerSetup();
+
+    Board player1Board;
+    player1Board.setBoardProperties(player1, 10, 10);
+    Board player2Board;
+    player2Board.setBoardProperties(player2, 10, 10);
+    
+    cout << "---------------------------------\n" << endl;
+    cout << "Do you want to place your ships manually? (y/n): ";
+    string choice;
+    cin >> choice;
+
+    if (choice == "y") {
+        // TODO: Implement manual ship placement for player 1
+    } else {
+        randomizeShipOnBoard(player1Board);
+    }
+    randomizeShipOnBoard(player2Board);
+
+}
