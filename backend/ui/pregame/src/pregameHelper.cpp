@@ -109,8 +109,11 @@ vector<int> coordinateSetup(Board& board, Ship& ship) {
     int col = toupper(coord[0]) - 'A';
     int row = stoi(coord.substr(1)) - 1;
     
-    if (checkOutOfBounds(board, row, col) || 
-        checkEmptyCell(board.getBoard()[row][col]) == false) {
+    if (checkOutOfBounds(board, row, col)) {
+        cout << "Invalid coordinates. Please try again.\n" << endl;
+        return coordinateSetup(board, ship);
+    }
+    if (checkEmptyCell(board.getBoard()[row][col]) == false) {
         cout << "Invalid coordinates. Please try again.\n" << endl;
         return coordinateSetup(board, ship);
     }
