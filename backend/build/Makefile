@@ -393,29 +393,29 @@ ui/pregame/src/pregame.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/ui/pregame/src/pregame.cpp.s
 .PHONY : ui/pregame/src/pregame.cpp.s
 
-ui/pregame/src/setup.o: ui/pregame/src/setup.cpp.o
-.PHONY : ui/pregame/src/setup.o
+ui/pregame/src/pregameHelper.o: ui/pregame/src/pregameHelper.cpp.o
+.PHONY : ui/pregame/src/pregameHelper.o
 
 # target to build an object file
-ui/pregame/src/setup.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o
-.PHONY : ui/pregame/src/setup.cpp.o
+ui/pregame/src/pregameHelper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o
+.PHONY : ui/pregame/src/pregameHelper.cpp.o
 
-ui/pregame/src/setup.i: ui/pregame/src/setup.cpp.i
-.PHONY : ui/pregame/src/setup.i
+ui/pregame/src/pregameHelper.i: ui/pregame/src/pregameHelper.cpp.i
+.PHONY : ui/pregame/src/pregameHelper.i
 
 # target to preprocess a source file
-ui/pregame/src/setup.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.i
-.PHONY : ui/pregame/src/setup.cpp.i
+ui/pregame/src/pregameHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.i
+.PHONY : ui/pregame/src/pregameHelper.cpp.i
 
-ui/pregame/src/setup.s: ui/pregame/src/setup.cpp.s
-.PHONY : ui/pregame/src/setup.s
+ui/pregame/src/pregameHelper.s: ui/pregame/src/pregameHelper.cpp.s
+.PHONY : ui/pregame/src/pregameHelper.s
 
 # target to generate assembly for a file
-ui/pregame/src/setup.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.s
-.PHONY : ui/pregame/src/setup.cpp.s
+ui/pregame/src/pregameHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.s
+.PHONY : ui/pregame/src/pregameHelper.cpp.s
 
 # Help Target
 help:
@@ -459,9 +459,9 @@ help:
 	@echo "... ui/pregame/src/pregame.o"
 	@echo "... ui/pregame/src/pregame.i"
 	@echo "... ui/pregame/src/pregame.s"
-	@echo "... ui/pregame/src/setup.o"
-	@echo "... ui/pregame/src/setup.i"
-	@echo "... ui/pregame/src/setup.s"
+	@echo "... ui/pregame/src/pregameHelper.o"
+	@echo "... ui/pregame/src/pregameHelper.i"
+	@echo "... ui/pregame/src/pregameHelper.s"
 .PHONY : help
 
 

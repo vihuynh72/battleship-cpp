@@ -1,5 +1,5 @@
 #include "../include/pregame.h"
-#include "../include/setup.h"
+#include "../include/pregameHelper.h"
 #include "../../ingame/include/startgame.h"
 #include "../../../gameplay/board/include/board.h"
 #include "../../../gameplay/ship/include/ship.h"

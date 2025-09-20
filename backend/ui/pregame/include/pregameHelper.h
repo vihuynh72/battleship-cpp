@@ -1,5 +1,5 @@
-#ifndef SETUP_H
-#define SETUP_H
+#ifndef PREGAME_HELPER_H
+#define PREGAME_HELPER_H
 
 #include "../../../gameplay/board/include/board.h"
 #include "../../../gameplay/ship/include/ship.h"
@@ -17,4 +17,4 @@ std::vector<int> coordinateSetup(Board&, Ship&);
 
 void placeShip(Board&, int, int);
 
-#endif // SETUP_H
+#endif // PREGAME_HELPER_H
