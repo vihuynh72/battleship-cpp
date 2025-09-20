@@ -49,6 +49,14 @@ int lengthSetup() {
     int length;
     cout << "Enter ship length (2-5): ";
     cin >> length;
+ 
+    if (cin.fail()) {
+        cin.clear(); // Clear the error flag
+        cin.ignore(10000, '\n'); // Ignore the invalid input
+        cout << "Invalid input. Please enter a number between 2 and 5.\n" << endl;
+        return lengthSetup();
+    }
+    
     if (length < 2 || length > 5) {
         cout << "Invalid length. Please enter a value between 2 and 5.\n" << endl;
         return lengthSetup();
