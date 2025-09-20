@@ -13,11 +13,13 @@ vector<int> dimensionSetup() {
     string dimension;
     cout << "Enter board dimensions (RowsxColumns) separated by 'x' (e.g., 10x10): ";
     cin >> dimension;
-
+    // find x or X
     size_t xPos = dimension.find('x');
     if (xPos == string::npos) { // if 'x' not found
-        cout << "Invalid format. Please use the format RowsxColumns (e.g., 10x10).\n" << endl;
-        return dimensionSetup();
+        if ((xPos = dimension.find('X')) == string::npos) {
+            cout << "Invalid format. Please use the format RowsxColumns (e.g., 10x10).\n" << endl;
+            return dimensionSetup();
+        }
     }
 
     int rows = stoi(dimension.substr(0, xPos));
