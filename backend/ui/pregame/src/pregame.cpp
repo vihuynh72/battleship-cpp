@@ -4,6 +4,9 @@
 #include "../../../gameplay/board/include/board.h"
 #include "../../../gameplay/ship/include/ship.h"
 #include "../../../gameplay/mechanics/bot/include/bot.h"
+#include "../../../gameplay/mechanics/ship/include/ship.h"
+#include "../../ingame/include/ingameHelper.h"
+
 
 #include <iostream>
 #include <string>
@@ -113,7 +116,23 @@ void quickGame() {
     cin >> choice;
 
     if (choice == "y") {
-        // TODO: Implement manual ship placement for player 1
+        vector<Ship> defaultShips = getDefaultShips();
+        // get coordinate and place each ship
+        for (Ship& ship : defaultShips) {
+            cout << "Placing ship: " << ship.getName() << " (Length: " << ship.getLength() << ")\n" << endl;
+
+            string direction = directionSetup();
+            ship.setShipProperties(ship.getName(), direction, ship.getLength());
+
+            vector<int> shipCoord = coordinateSetup(player1Board, ship);
+            int ship_y_coord = shipCoord[0];
+            int ship_x_coord = shipCoord[1];
+
+            addShipToBoard(player1Board, ship, ship_y_coord, ship_x_coord, ship.getDirection());
+            printBoard(player1Board);
+            cout << "Ship placed successfully!\n" << endl;
+        }
+        
     } else {
         randomizeShipOnBoard(player1Board);
     }
