@@ -53,22 +53,40 @@ Ship shipSetup(Board& board) {
     // Create and add ship to board
     Ship ship;
     ship.setShipProperties(name, direction, length);
-
-    cout << "Enter ship starting X coordinate (0 to " << board.getColumns() - 1 << "): ";
-    cin >> ship_x_coord;
-
-    cout << "Enter ship starting Y coordinate (0 to " << board.getRows() - 1 << "): ";
-    cin >> ship_y_coord;
-
-    if (checkAvailableSpace(board, ship, ship_y_coord, ship_x_coord, direction) == false) {
-        cout << "Invalid coordinates. Please try again.\n" << endl;
-        return shipSetup(board);
-    }
+    
+    vector<int> shipCoord = coordinateSetup(board, ship);
+    ship_y_coord = shipCoord[0];
+    ship_x_coord = shipCoord[1];
 
     addShipToBoard(board, ship, ship_y_coord, ship_x_coord, direction);
     printBoard(board);
     cout << "Ship placed successfully!\n" << endl;
     return ship;
+}
+
+vector<int> coordinateSetup(Board& board, Ship& ship) {
+    string coord;
+
+    cout << "Enter desired coordinates (e.g., A5): ";
+    cin >> coord;
+
+    if (coord.length() < 2 || 
+        !isalpha(coord[0]) || 
+        !isdigit(coord[1]) || 
+        (coord.length() == 3 && !isdigit(coord[2]))) {
+        cout << "Invalid format. Please use the format LetterNumber (e.g., A5).\n" << endl;
+        return coordinateSetup(board, ship);
+    }
+    
+    int col = toupper(coord[0]) - 'A';
+    int row = stoi(coord.substr(1)) - 1;
+    
+    if (checkOutOfBounds(board, row, col) || 
+        checkEmptyCell(board.getBoard()[row][col]) == false) {
+        cout << "Invalid coordinates. Please try again.\n" << endl;
+        return coordinateSetup(board, ship);
+    }
+    return {row, col};
 }
 
 void placeShip(Board& board, int row, int col) {
