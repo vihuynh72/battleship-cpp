@@ -12,6 +12,7 @@ std::string playerSetup();
 Ship shipSetup(Board&);
 
 std::string directionSetup();
+int lengthSetup();
 std::vector<int> coordinateSetup(Board&, Ship&);
 
 void placeShip(Board&, int, int);

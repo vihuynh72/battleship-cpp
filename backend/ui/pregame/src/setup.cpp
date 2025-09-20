@@ -38,6 +38,17 @@ string directionSetup() {
     }
     return direction;
 }
+
+int lengthSetup() {
+    int length;
+    cout << "Enter ship length (2-5): ";
+    cin >> length;
+    if (length < 2 || length > 5) {
+        cout << "Invalid length. Please enter a value between 2 and 5.\n" << endl;
+        return lengthSetup();
+    }
+    return length;
+}
   
 Ship shipSetup(Board& board) {
     string name;
@@ -49,13 +60,7 @@ Ship shipSetup(Board& board) {
     cin >> name;
     
     direction = directionSetup();
-
-    cout << "Enter ship length (2-5): ";
-    cin >> length;
-    if (length < 2 || length > 5) {
-        cout << "Invalid length. Please enter a value between 2 and 5.\n" << endl;
-        return shipSetup(board);
-    }
+    length = lengthSetup();
 
     // Create and add ship to board
     Ship ship;
