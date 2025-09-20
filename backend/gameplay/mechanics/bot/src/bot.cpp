@@ -9,7 +9,7 @@
 using namespace std;
 
 void randomizeShipOnBoard(Board& botBoard) {    // Randomly place 5 ships of varying sizes on the board
-    defaultShips = getDefaultShips();
+    vector<Ship> defaultShips = getDefaultShips();
     for (int i = 0; i < 5; ++i) {
         Ship ship = defaultShips[i];
         string direction = (nextInt(0, 1) == 0) ? "horizontal" : "vertical";
