@@ -99,6 +99,7 @@ vector<int> coordinateSetup(Board& board, Ship& ship) {
     cin >> coord;
 
     if (coord.length() < 2 || 
+        coord.length() > 3 ||
         !isalpha(coord[0]) || 
         !isdigit(coord[1]) || 
         (coord.length() == 3 && !isdigit(coord[2]))) {
