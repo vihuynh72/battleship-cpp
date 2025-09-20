@@ -19,9 +19,9 @@ void printBoard(Board& board) {
 
     for (int i = 0; i < board.getRows(); i++) {
         if (i < 9) {
-            cout << i + 1 << "    ";
-        } else {
             cout << i + 1 << "   ";
+        } else {
+            cout << i + 1 << "  ";
         }
 
         for (int j = 0; j < board.getColumns(); j++) {

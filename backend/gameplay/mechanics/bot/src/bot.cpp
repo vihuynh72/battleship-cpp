@@ -9,13 +9,11 @@
 using namespace std;
 
 void randomizeShipOnBoard(Board& botBoard) {    // Randomly place 5 ships of varying sizes on the board
+    vector<Ship> defaultShips = getDefaultShips();
     for (int i = 0; i < 5; ++i) {
-        Ship ship;
-        string ShipName = to_string(i + 1);
-        int ShipLength = nextInt(2, 5);
+        Ship ship = defaultShips[i];
         string direction = (nextInt(0, 1) == 0) ? "horizontal" : "vertical";
-
-        ship.setShipProperties(ShipName, direction, ShipLength);
+        ship.setShipProperties(ship.getName(), direction, ship.getLength());
         bool placed = false;
 
         while (!placed) {
