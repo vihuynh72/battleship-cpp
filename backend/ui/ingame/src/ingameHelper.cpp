@@ -18,7 +18,7 @@ void printBoard(Board& board) {
     cout << endl;
 
     for (int i = 0; i < board.getRows(); i++) {
-        cout << " "  << i << " ";
+        cout << " "  << i + 1 << " ";
         for (int j = 0; j < board.getColumns(); j++) {
             cout << board.getBoard()[i][j] << " ";
         }

@@ -19,12 +19,12 @@ void randomizeShipOnBoard(Board& botBoard) {    // Randomly place 5 ships of var
         bool placed = false;
 
         while (!placed) {
-        int row = nextInt(0, botBoard.getRows() - 1);
-        int col = nextInt(0, botBoard.getColumns() - 1);
-        if (checkAvailableSpace(botBoard, ship, row, col, direction)) {
-            addShipToBoard(botBoard, ship, row, col, direction);
-            placed = true;
-          }
+            int row = nextInt(0, botBoard.getRows() - 1);
+            int col = nextInt(0, botBoard.getColumns() - 1);
+            if (checkAvailableSpace(botBoard, ship, row, col, direction)) {
+                addShipToBoard(botBoard, ship, row, col, direction);
+                placed = true;
+                }
       }
     }
     printBoard(botBoard);
