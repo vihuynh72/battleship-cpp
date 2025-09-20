@@ -9,14 +9,20 @@
 
 using namespace std;
 
-int dimensionSetup() {
-    int dimension;
+vector<int> dimensionSetup() {
+    string dimension;
+    cout << "Enter board dimensions (RowsxColumns) separated by 'x' (e.g., 10x10): ";
     cin >> dimension;
-    if (dimension < 5 || dimension > 26) {
-        cout << "Invalid dimension. Please enter a value between 5 and 26." << endl;
+
+    size_t xPos = dimension.find('x');
+    if (xPos == string::npos) { // if 'x' not found
+        cout << "Invalid format. Please use the format RowsxColumns (e.g., 10x10).\n" << endl;
         return dimensionSetup();
     }
-    return dimension;
+
+    int rows = stoi(dimension.substr(0, xPos));
+    int cols = stoi(dimension.substr(xPos + 1));
+    return {rows, cols};
 }
 
 string playerSetup() {

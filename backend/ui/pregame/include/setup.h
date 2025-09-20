@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-int dimensionSetup();
+std::vector<int> dimensionSetup();
 std::string playerSetup();
 Ship shipSetup(Board&);
 

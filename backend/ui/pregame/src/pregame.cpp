@@ -48,13 +48,10 @@ void displaySetup() {
     cout << "               Game Setup               " << endl;
     cout << "----------------------------------------" << endl;
     cout << "1. Set up board dimensions\n" << endl;
-    cout << "Number of Rows (min 5, max 26): ";
-
-    int rows = dimensionSetup();
-
-    cout << "Number of Columns (min 5, max 26): ";
-
-    int cols = dimensionSetup();
+    
+    vector<int> dimensions = dimensionSetup();
+    int rows = dimensions[0];
+    int cols = dimensions[1];
     
     cout << "----------------------------------------" << endl;
     cout << "2. Set up player names\n" << endl;
