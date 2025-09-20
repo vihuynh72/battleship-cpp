@@ -201,6 +201,30 @@ gameplay/mechanics/board/src/board.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/mechanics/board/src/board.cpp.s
 .PHONY : gameplay/mechanics/board/src/board.cpp.s
 
+gameplay/mechanics/bot/src/bot.o: gameplay/mechanics/bot/src/bot.cpp.o
+.PHONY : gameplay/mechanics/bot/src/bot.o
+
+# target to build an object file
+gameplay/mechanics/bot/src/bot.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o
+.PHONY : gameplay/mechanics/bot/src/bot.cpp.o
+
+gameplay/mechanics/bot/src/bot.i: gameplay/mechanics/bot/src/bot.cpp.i
+.PHONY : gameplay/mechanics/bot/src/bot.i
+
+# target to preprocess a source file
+gameplay/mechanics/bot/src/bot.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.i
+.PHONY : gameplay/mechanics/bot/src/bot.cpp.i
+
+gameplay/mechanics/bot/src/bot.s: gameplay/mechanics/bot/src/bot.cpp.s
+.PHONY : gameplay/mechanics/bot/src/bot.s
+
+# target to generate assembly for a file
+gameplay/mechanics/bot/src/bot.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.s
+.PHONY : gameplay/mechanics/bot/src/bot.cpp.s
+
 gameplay/mechanics/ship/src/ship.o: gameplay/mechanics/ship/src/ship.cpp.o
 .PHONY : gameplay/mechanics/ship/src/ship.o
 
@@ -411,6 +435,9 @@ help:
 	@echo "... gameplay/mechanics/board/src/board.o"
 	@echo "... gameplay/mechanics/board/src/board.i"
 	@echo "... gameplay/mechanics/board/src/board.s"
+	@echo "... gameplay/mechanics/bot/src/bot.o"
+	@echo "... gameplay/mechanics/bot/src/bot.i"
+	@echo "... gameplay/mechanics/bot/src/bot.s"
 	@echo "... gameplay/mechanics/ship/src/ship.o"
 	@echo "... gameplay/mechanics/ship/src/ship.i"
 	@echo "... gameplay/mechanics/ship/src/ship.s"

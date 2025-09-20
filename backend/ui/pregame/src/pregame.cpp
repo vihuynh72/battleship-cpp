@@ -3,6 +3,7 @@
 #include "../../ingame/include/startgame.h"
 #include "../../../gameplay/board/include/board.h"
 #include "../../../gameplay/ship/include/ship.h"
+#include "../../../gameplay/mechanics/bot/include/bot.h"
 
 #include <iostream>
 #include <string>
@@ -77,7 +78,9 @@ void displaySetup() {
     cout << "Placing ships for " << player1 << "\n" << endl;
     
     placeShip(player1Board, rows, cols);
-    placeShip(player2Board, rows, cols);
+
+    cout << "Placing ships for " << player2 << "\n" << endl;
+    randomizeShipOnBoard(player2Board);
 
     cout << "========================================" << endl;
 
