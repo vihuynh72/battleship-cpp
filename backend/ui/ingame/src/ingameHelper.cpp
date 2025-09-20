@@ -11,14 +11,19 @@ using namespace std;
 void printBoard(Board& board) {
     cout << "\n" << endl;
     cout << board.getPlayerName() << "'s Board: " << endl;
-    cout << "  ";
+    cout << "    ";
     for (int j = 0; j < board.getColumns(); j++) {
         cout << "  " << static_cast<char>('A' + j) << " ";
     }
     cout << endl;
 
     for (int i = 0; i < board.getRows(); i++) {
-        cout << " "  << i + 1 << " ";
+        if (i < 9) {
+            cout << i + 1 << "    ";
+        } else {
+            cout << i + 1 << "   ";
+        }
+
         for (int j = 0; j < board.getColumns(); j++) {
             cout << board.getBoard()[i][j] << " ";
         }
