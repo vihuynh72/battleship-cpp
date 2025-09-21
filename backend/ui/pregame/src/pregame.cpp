@@ -96,9 +96,9 @@ void displaySetup() {
 }
 
 void personVsComputer() {
-    cout << "=================================" << endl;
-    cout << "         Person vs Computer      " << endl;
-    cout << "=================================" << endl;
+    cout << "========================================" << endl;
+    cout << "            Person vs Computer          " << endl;
+    cout << "========================================" << endl;
     cout << "1. Quick Game" << endl;
     cout << "2. Setup Game" << endl;
     cout << "3. Back to Main Menu" << endl;
@@ -123,8 +123,8 @@ void personVsComputer() {
 }
 
 void pvcQuickGame() {
-    cout << "=================================" << endl;
-    cout << "            Quick Game           \n" << endl;
+    cout << "========================================" << endl;
+    cout << "               Quick Game               \n" << endl;
 
     cout << "Enter Player 1 Name: ";
     string player1 = playerSetup();
@@ -136,7 +136,7 @@ void pvcQuickGame() {
     Board player2Board;
     player2Board.setBoardProperties(player2, 10, 10);
     
-    cout << "---------------------------------" << endl;
+    cout << "----------------------------------------" << endl;
     cout << "Do you want to place your ships manually? (y/n):\n";
     string choice;
     cin >> choice;
