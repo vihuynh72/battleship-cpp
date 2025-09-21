@@ -82,17 +82,7 @@ void displaySetup() {
     cout << "Placing ships for " << player2 << "\n" << endl;
     randomizeShipOnBoard(player2Board);
 
-    cout << "========================================" << endl;
-
-    cout << "Setup complete! Do you want to start the game? (yes/no)" << endl;
-    
-    string choice;
-    cin >> choice;
-    if (choice == "yes") {
-        startGame(player1Board, player2Board);
-    } else {
-        displayHome();
-    }
+    promptBeginGame(player1Board, player2Board, true);
 }
 
 void personVsComputer() {
@@ -164,4 +154,22 @@ void pvcQuickGame() {
     }
     randomizeShipOnBoard(player2Board);
 
+    promptBeginGame(player1Board, player2Board, true);
+}
+
+void promptBeginGame(Board& player1Board, Board& player2Board, bool isPvC) {
+    cout << "========================================" << endl;
+    cout << "Setup complete! Do you want to start the game? (y/n)" << endl;
+    
+    string choice;
+    cin >> choice;
+    if (choice == "y") {
+        if (isPvC) {
+            startPvcGame(player1Board, player2Board);
+        } else {
+            startPvPGame(player1Board, player2Board);
+        }
+    } else {
+        displayHome();
+    }
 }

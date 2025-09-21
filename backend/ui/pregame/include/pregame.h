@@ -13,4 +13,5 @@ void displaySetup();
 void personVsComputer();
 void pvcQuickGame();
 
+void promptBeginGame(Board&, Board&, bool);
 #endif // PREGAME_H
