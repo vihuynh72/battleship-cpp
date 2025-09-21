@@ -19,8 +19,8 @@ void displayHome() {
     cout << "========================================" << endl;
     cout << "   Welcome to the Ultimate Battleship  " << endl;
     cout << "========================================" << endl;
-    cout << "1. Quick Game (10x10 with default 5 ships)" << endl;
-    cout << "2. Setup Game" << endl;
+    cout << "1. vs Computer" << endl;
+    cout << "2. vs Human" << endl;
     cout << "3. Exit" << endl;
     cout << "Please select an option (1-3): ";
 
@@ -28,10 +28,12 @@ void displayHome() {
     cin >> choice;
     switch (choice) {
         case 1:
-            pvcQuickGame();
+            personVsComputer();
             break;
         case 2:
-            displaySetup();
+            // TODO: Implement human vs human mode
+            cout << "Human vs Human mode is under development. Please try again later." << endl;
+            displayHome();
             break;
         case 3:
             cout << "Exiting game. Thank you for playing!" << endl;
@@ -45,8 +47,6 @@ void displayHome() {
 
 
 void displaySetup() {
-    cout << "========================================" << endl;
-    cout << "            Game Setup Menu             " << endl;
     cout << "========================================" << endl;
     cout << "               Game Setup               " << endl;
     cout << "----------------------------------------" << endl;
@@ -95,8 +95,34 @@ void displaySetup() {
     }
 }
 
+void personVsComputer() {
+    cout << "=================================" << endl;
+    cout << "         Person vs Computer      " << endl;
+    cout << "=================================" << endl;
+    cout << "1. Quick Game" << endl;
+    cout << "2. Setup Game" << endl;
+    cout << "3. Back to Main Menu" << endl;
+    cout << "Please select an option (1-3): ";
+    int choice;
+    cin >> choice;
 
-void quickGame() {
+    switch (choice) {
+        case 1:
+            pvcQuickGame();
+            break;
+        case 2:
+            displaySetup();
+            break;
+        case 3:
+            displayHome();
+            break;
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+            personVsComputer();
+    }
+}
+
+void pvcQuickGame() {
     cout << "=================================" << endl;
     cout << "            Quick Game           \n" << endl;
 
