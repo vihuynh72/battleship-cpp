@@ -4,6 +4,7 @@
 #include "../../../gameplay/board/include/board.h"
 #include "../../../gameplay/ship/include/ship.h"
 
-void startGame(Board&, Board&);
+void startPvcGame(Board&, Board&);
+void startPvPGame(Board&, Board&);
 
 #endif // STARTGAME_H

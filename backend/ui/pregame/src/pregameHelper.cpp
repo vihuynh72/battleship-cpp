@@ -27,10 +27,21 @@ vector<int> dimensionSetup() {
     return {rows, cols};
 }
 
-string playerSetup() {
-    string playerName;
-    cin >> playerName;
-    return playerName;
+
+vector<string> playerSetup(bool isPvC) {
+    string player1;
+    string player2;
+
+    cout << "Enter Player 1 Name: ";
+    cin >> player1;
+
+    if (isPvC) {
+        return {player1, "Computer"};
+    } else {
+        cout << "Enter Player 2 Name: ";
+        cin >> player2;
+        return {player1, player2};
+    }
 }
 
 string directionSetup() {

@@ -58,13 +58,9 @@ void displaySetup() {
     
     cout << "----------------------------------------" << endl;
     cout << "2. Set up player names\n" << endl;
-    cout << "Enter Player 1 Name: ";
-
-    string player1 = playerSetup();
-
-    cout << "Enter Player 2 Name: ";
-
-    string player2 = playerSetup();
+    vector<string> players = playerSetup(true);
+    string player1 = players[0];
+    string player2 = players[1];
 
     Board player1Board;
     player1Board.setBoardProperties(player1, rows, cols);
@@ -116,10 +112,9 @@ void pvcQuickGame() {
     cout << "========================================" << endl;
     cout << "               Quick Game               \n" << endl;
 
-    cout << "Enter Player 1 Name: ";
-    string player1 = playerSetup();
-    cout << "Enter Player 2 Name: ";
-    string player2 = playerSetup();
+    vector<string> players = playerSetup(true);
+    string player1 = players[0];
+    string player2 = players[1];
 
     Board player1Board;
     player1Board.setBoardProperties(player1, 10, 10);
