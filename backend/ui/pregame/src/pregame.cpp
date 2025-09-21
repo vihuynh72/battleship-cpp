@@ -19,8 +19,8 @@ void displayHome() {
     cout << "========================================" << endl;
     cout << "   Welcome to the Ultimate Battleship  " << endl;
     cout << "========================================" << endl;
-    cout << "1. Quick Game (10x10 with default 5 ships)" << endl;
-    cout << "2. Setup Game" << endl;
+    cout << "1. vs Computer" << endl;
+    cout << "2. vs Human" << endl;
     cout << "3. Exit" << endl;
     cout << "Please select an option (1-3): ";
 
@@ -28,10 +28,12 @@ void displayHome() {
     cin >> choice;
     switch (choice) {
         case 1:
-            quickGame();
+            personVsComputer();
             break;
         case 2:
-            displaySetup();
+            // TODO: Implement human vs human mode
+            cout << "Human vs Human mode is under development. Please try again later." << endl;
+            displayHome();
             break;
         case 3:
             cout << "Exiting game. Thank you for playing!" << endl;
@@ -46,8 +48,6 @@ void displayHome() {
 
 void displaySetup() {
     cout << "========================================" << endl;
-    cout << "            Game Setup Menu             " << endl;
-    cout << "========================================" << endl;
     cout << "               Game Setup               " << endl;
     cout << "----------------------------------------" << endl;
     cout << "1. Set up board dimensions\n" << endl;
@@ -58,13 +58,9 @@ void displaySetup() {
     
     cout << "----------------------------------------" << endl;
     cout << "2. Set up player names\n" << endl;
-    cout << "Enter Player 1 Name: ";
-
-    string player1 = playerSetup();
-
-    cout << "Enter Player 2 Name: ";
-
-    string player2 = playerSetup();
+    vector<string> players = playerSetup(true);
+    string player1 = players[0];
+    string player2 = players[1];
 
     Board player1Board;
     player1Board.setBoardProperties(player1, rows, cols);
@@ -82,36 +78,51 @@ void displaySetup() {
     cout << "Placing ships for " << player2 << "\n" << endl;
     randomizeShipOnBoard(player2Board);
 
-    cout << "========================================" << endl;
+    promptBeginGame(player1Board, player2Board, true);
+}
 
-    cout << "Setup complete! Do you want to start the game? (yes/no)" << endl;
-    
-    string choice;
+void personVsComputer() {
+    cout << "========================================" << endl;
+    cout << "            Person vs Computer          " << endl;
+    cout << "========================================" << endl;
+    cout << "1. Quick Game" << endl;
+    cout << "2. Setup Game" << endl;
+    cout << "3. Back to Main Menu" << endl;
+    cout << "Please select an option (1-3): ";
+    int choice;
     cin >> choice;
-    if (choice == "yes") {
-        startGame(player1Board, player2Board);
-    } else {
-        displayHome();
+
+    switch (choice) {
+        case 1:
+            pvcQuickGame();
+            break;
+        case 2:
+            displaySetup();
+            break;
+        case 3:
+            displayHome();
+            break;
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+            personVsComputer();
     }
 }
 
+void pvcQuickGame() {
+    cout << "========================================" << endl;
+    cout << "               Quick Game               \n" << endl;
 
-void quickGame() {
-    cout << "=================================" << endl;
-    cout << "            Quick Game           \n" << endl;
-
-    cout << "Enter Player 1 Name: ";
-    string player1 = playerSetup();
-    cout << "Enter Player 2 Name: ";
-    string player2 = playerSetup();
+    vector<string> players = playerSetup(true);
+    string player1 = players[0];
+    string player2 = players[1];
 
     Board player1Board;
     player1Board.setBoardProperties(player1, 10, 10);
     Board player2Board;
     player2Board.setBoardProperties(player2, 10, 10);
     
-    cout << "---------------------------------\n" << endl;
-    cout << "Do you want to place your ships manually? (y/n): ";
+    cout << "----------------------------------------" << endl;
+    cout << "Do you want to place your ships manually? (y/n):\n";
     string choice;
     cin >> choice;
 
@@ -130,7 +141,7 @@ void quickGame() {
 
             addShipToBoard(player1Board, ship, ship_y_coord, ship_x_coord, ship.getDirection());
             printBoard(player1Board);
-            cout << "Ship placed successfully!\n" << endl;
+            cout << "Ship placed successfully!" << endl;
         }
         
     } else {
@@ -138,4 +149,22 @@ void quickGame() {
     }
     randomizeShipOnBoard(player2Board);
 
+    promptBeginGame(player1Board, player2Board, true);
+}
+
+void promptBeginGame(Board& player1Board, Board& player2Board, bool isPvC) {
+    cout << "========================================" << endl;
+    cout << "Setup complete! Do you want to start the game? (y/n)" << endl;
+    
+    string choice;
+    cin >> choice;
+    if (choice == "y") {
+        if (isPvC) {
+            startPvcGame(player1Board, player2Board);
+        } else {
+            startPvPGame(player1Board, player2Board);
+        }
+    } else {
+        displayHome();
+    }
 }

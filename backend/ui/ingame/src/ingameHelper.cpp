@@ -9,9 +9,9 @@
 using namespace std;
 
 void printBoard(Board& board) {
-    cout << "\n" << endl;
+    cout << endl;
     cout << board.getPlayerName() << "'s Board: " << endl;
-    cout << "    ";
+    cout << "   ";
     for (int j = 0; j < board.getColumns(); j++) {
         cout << "  " << static_cast<char>('A' + j) << " ";
     }
@@ -29,7 +29,6 @@ void printBoard(Board& board) {
         }
         cout << endl;
     }
-    cout << endl;
 }
 
 void printShipList(Board& board) {

@@ -9,11 +9,16 @@
 
 using namespace std;
 
-void startGame(Board& player1, Board& player2) {
+void startPvcGame(Board& player1, Board& player2) {
     cout << "Starting game between " << player1.getPlayerName() << " and " << player2.getPlayerName() << "!" << endl;
     cout << "Let the battle begin!" << endl;
-    printBoard(player1);
-    printBoard(player2);
-    
+
+    ingame(player1, player2);
+}
+
+void startPvPGame(Board& player1, Board& player2) {
+    cout << "Starting game between " << player1.getPlayerName() << " and " << player2.getPlayerName() << "!" << endl;
+    cout << "Let the battle begin!" << endl;
+
     ingame(player1, player2);
 }

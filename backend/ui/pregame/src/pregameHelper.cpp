@@ -27,10 +27,23 @@ vector<int> dimensionSetup() {
     return {rows, cols};
 }
 
-string playerSetup() {
-    string playerName;
-    cin >> playerName;
-    return playerName;
+
+vector<string> playerSetup(bool isPvC) {
+    string player1;
+    string player2;
+
+    if (isPvC) {
+        cout << "Enter Your Name: ";
+        cin >> player1;
+        return {player1, "Computer"};
+    } else {
+        cout << "Enter Player 1 Name: ";
+        cin >> player1;
+
+        cout << "Enter Player 2 Name: ";
+        cin >> player2;
+        return {player1, player2};
+    }
 }
 
 string directionSetup() {
@@ -109,12 +122,8 @@ vector<int> coordinateSetup(Board& board, Ship& ship) {
     
     int col = toupper(coord[0]) - 'A';
     int row = stoi(coord.substr(1)) - 1;
-    
-    if (checkOutOfBounds(board, row, col)) {
-        cout << "Invalid coordinates. Please try again.\n" << endl;
-        return coordinateSetup(board, ship);
-    }
-    if (checkEmptyCell(board.getBoard()[row][col]) == false) {
+
+    if (checkOutOfBounds(board, row, col) || !checkEmptyCell(board.getBoard()[row][col])) {
         cout << "Invalid coordinates. Please try again.\n" << endl;
         return coordinateSetup(board, ship);
     }

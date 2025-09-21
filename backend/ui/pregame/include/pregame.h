@@ -10,6 +10,8 @@
 void displayHome();
 void displaySetup();
 
-void quickGame();
+void personVsComputer();
+void pvcQuickGame();
 
+void promptBeginGame(Board&, Board&, bool);
 #endif // PREGAME_H
