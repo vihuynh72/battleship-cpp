@@ -28,7 +28,7 @@ void displayHome() {
     cin >> choice;
     switch (choice) {
         case 1:
-            quickGame();
+            pvcQuickGame();
             break;
         case 2:
             displaySetup();
