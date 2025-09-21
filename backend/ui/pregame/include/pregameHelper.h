@@ -8,7 +8,7 @@
 #include <vector>
 
 std::vector<int> dimensionSetup();
-std::vector<string> playerSetup();
+std::vector<std::string> playerSetup(bool);
 Ship shipSetup(Board&);
 
 std::string directionSetup();

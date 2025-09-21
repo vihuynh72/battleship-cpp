@@ -32,12 +32,14 @@ vector<string> playerSetup(bool isPvC) {
     string player1;
     string player2;
 
-    cout << "Enter Player 1 Name: ";
-    cin >> player1;
-
     if (isPvC) {
+        cout << "Enter Your Name: ";
+        cin >> player1;
         return {player1, "Computer"};
     } else {
+        cout << "Enter Player 1 Name: ";
+        cin >> player1;
+
         cout << "Enter Player 2 Name: ";
         cin >> player2;
         return {player1, player2};
