@@ -6,9 +6,9 @@
 
 class Game {
     public:
-        Game();
-        Game(Board& p1Board, Board& p2Board);
-        Game(Board& p1Board, Board& p2Board, bool pvp, GameMode& gameRules);
+        virtual Game();
+        virtual Game(Board& p1Board, Board& p2Board);
+        virtual Game(Board& p1Board, Board& p2Board, bool pvp, GameMode& gameRules);
 
         //getter setters for players' boards
         Board& getPlayer1Board() { return player1Board; };
@@ -21,7 +21,7 @@ class Game {
         void setIsPvP(bool pvp) { isPvP = pvp; };
 
         // getter setter for game rules
-        GameMode& getGameRules() { return rules; };
+        GameMode& getGameRules()    { return rules; };
         void setGameRules(GameMode& gameRules) { rules = gameRules; };
 
     private:
@@ -31,3 +31,13 @@ class Game {
         bool isPvP;
         GameMode& rules;
 };
+
+class pvcGame : public Game {
+    
+};
+
+class pvpGame : public Game {
+    
+};
+
+#endif // GAME_H
