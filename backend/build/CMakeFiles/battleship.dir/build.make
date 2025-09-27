@@ -97,19 +97,19 @@ CMakeFiles/battleship.dir/ui/pregame/src/pregame.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/battleship.dir/ui/pregame/src/pregame.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/battleship-cpp/backend/ui/pregame/src/pregame.cpp -o CMakeFiles/battleship.dir/ui/pregame/src/pregame.cpp.s
 
-CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o: CMakeFiles/battleship.dir/flags.make
-CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o: /workspaces/battleship-cpp/backend/ui/pregame/src/setup.cpp
-CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o: CMakeFiles/battleship.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/battleship-cpp/backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o -MF CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o.d -o CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o -c /workspaces/battleship-cpp/backend/ui/pregame/src/setup.cpp
+CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o: CMakeFiles/battleship.dir/flags.make
+CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o: /workspaces/battleship-cpp/backend/ui/pregame/src/pregameHelper.cpp
+CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o: CMakeFiles/battleship.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/battleship-cpp/backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o -MF CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o.d -o CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o -c /workspaces/battleship-cpp/backend/ui/pregame/src/pregameHelper.cpp
 
-CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/battleship-cpp/backend/ui/pregame/src/setup.cpp > CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.i
+CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/battleship-cpp/backend/ui/pregame/src/pregameHelper.cpp > CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.i
 
-CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/battleship-cpp/backend/ui/pregame/src/setup.cpp -o CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.s
+CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/battleship-cpp/backend/ui/pregame/src/pregameHelper.cpp -o CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.s
 
 CMakeFiles/battleship.dir/ui/ingame/src/startgame.cpp.o: CMakeFiles/battleship.dir/flags.make
 CMakeFiles/battleship.dir/ui/ingame/src/startgame.cpp.o: /workspaces/battleship-cpp/backend/ui/ingame/src/startgame.cpp
@@ -223,11 +223,25 @@ CMakeFiles/battleship.dir/gameplay/mechanics/board/src/board.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/battleship.dir/gameplay/mechanics/board/src/board.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/battleship-cpp/backend/gameplay/mechanics/board/src/board.cpp -o CMakeFiles/battleship.dir/gameplay/mechanics/board/src/board.cpp.s
 
+CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o: CMakeFiles/battleship.dir/flags.make
+CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o: /workspaces/battleship-cpp/backend/gameplay/mechanics/bot/src/bot.cpp
+CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o: CMakeFiles/battleship.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/battleship-cpp/backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o -MF CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o.d -o CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o -c /workspaces/battleship-cpp/backend/gameplay/mechanics/bot/src/bot.cpp
+
+CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/battleship-cpp/backend/gameplay/mechanics/bot/src/bot.cpp > CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.i
+
+CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/battleship-cpp/backend/gameplay/mechanics/bot/src/bot.cpp -o CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.s
+
 # Object files for target battleship
 battleship_OBJECTS = \
 "CMakeFiles/battleship.dir/app/main.cpp.o" \
 "CMakeFiles/battleship.dir/ui/pregame/src/pregame.cpp.o" \
-"CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o" \
+"CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o" \
 "CMakeFiles/battleship.dir/ui/ingame/src/startgame.cpp.o" \
 "CMakeFiles/battleship.dir/ui/ingame/src/ingame.cpp.o" \
 "CMakeFiles/battleship.dir/ui/ingame/src/ingameHelper.cpp.o" \
@@ -235,14 +249,15 @@ battleship_OBJECTS = \
 "CMakeFiles/battleship.dir/gameplay/ship/src/ship.cpp.o" \
 "CMakeFiles/battleship.dir/gameplay/mechanics/space/src/space.cpp.o" \
 "CMakeFiles/battleship.dir/gameplay/mechanics/ship/src/ship.cpp.o" \
-"CMakeFiles/battleship.dir/gameplay/mechanics/board/src/board.cpp.o"
+"CMakeFiles/battleship.dir/gameplay/mechanics/board/src/board.cpp.o" \
+"CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o"
 
 # External object files for target battleship
 battleship_EXTERNAL_OBJECTS =
 
 bin/battleship: CMakeFiles/battleship.dir/app/main.cpp.o
 bin/battleship: CMakeFiles/battleship.dir/ui/pregame/src/pregame.cpp.o
-bin/battleship: CMakeFiles/battleship.dir/ui/pregame/src/setup.cpp.o
+bin/battleship: CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o
 bin/battleship: CMakeFiles/battleship.dir/ui/ingame/src/startgame.cpp.o
 bin/battleship: CMakeFiles/battleship.dir/ui/ingame/src/ingame.cpp.o
 bin/battleship: CMakeFiles/battleship.dir/ui/ingame/src/ingameHelper.cpp.o
@@ -251,9 +266,10 @@ bin/battleship: CMakeFiles/battleship.dir/gameplay/ship/src/ship.cpp.o
 bin/battleship: CMakeFiles/battleship.dir/gameplay/mechanics/space/src/space.cpp.o
 bin/battleship: CMakeFiles/battleship.dir/gameplay/mechanics/ship/src/ship.cpp.o
 bin/battleship: CMakeFiles/battleship.dir/gameplay/mechanics/board/src/board.cpp.o
+bin/battleship: CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o
 bin/battleship: CMakeFiles/battleship.dir/build.make
 bin/battleship: CMakeFiles/battleship.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspaces/battleship-cpp/backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable bin/battleship"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspaces/battleship-cpp/backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable bin/battleship"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/battleship.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
