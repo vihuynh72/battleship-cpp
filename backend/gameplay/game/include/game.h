@@ -24,6 +24,8 @@ class Game {
         GameMode& getGameRules()    { return rules; };
         void setGameRules(GameMode& gameRules) { rules = gameRules; };
 
+        void playerTurn();
+
     protected:
         Board& player1Board;
         Board& player2Board;

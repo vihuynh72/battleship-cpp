@@ -11,6 +11,10 @@ Game::Game(Board& p1Board, Board& p2Board) : player1Board(p1Board), player2Board
     // Constructor with boards to start a PVC game
 }
 
+void Game::playerTurn() {
+    
+}
+
 void pvcGame::computerTurn() {
     Board& playerBoard = getPlayer1Board(); // AI will get player 1's board and interact with it
 
