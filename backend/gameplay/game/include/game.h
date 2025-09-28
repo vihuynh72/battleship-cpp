@@ -24,8 +24,6 @@ class Game {
         GameMode& getGameRules()    { return rules; };
         void setGameRules(GameMode& gameRules) { rules = gameRules; };
 
-        void playerTurn();
-
     protected:
         Board& player1Board;
         Board& player2Board;
@@ -38,6 +36,7 @@ class pvcGame : public Game {
     public:
         pvcGame(Board& p1Board, Board& p2Board) : Game(p1Board, p2Board, false) {};
 
+        void playerTurn();
         void computerTurn();
 };
 
