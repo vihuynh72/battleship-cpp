@@ -33,7 +33,10 @@ class Game {
 };
 
 class pvcGame : public Game {
-    
+    public:
+        pvcGame(Board& p1Board, Board& p2Board) : Game(p1Board, p2Board, false) {};
+
+        void computerTurn();
 };
 
 class pvpGame : public Game {
