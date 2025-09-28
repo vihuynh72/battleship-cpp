@@ -24,12 +24,12 @@ class Game {
         GameMode& getGameRules()    { return rules; };
         void setGameRules(GameMode& gameRules) { rules = gameRules; };
 
-    private:
+    protected:
         Board& player1Board;
         Board& player2Board;
 
         bool isPvP;
-        GameMode& rules;
+        GameMode rules;
 };
 
 class pvcGame : public Game {
