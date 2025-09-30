@@ -9,4 +9,6 @@ void printShipInfo(Ship&);
 
 bool checkGameOver(Board&, Board&);
 
+bool validateCoord();
+
 #endif // INGAMEHELPER_H

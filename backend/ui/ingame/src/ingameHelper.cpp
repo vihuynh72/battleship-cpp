@@ -45,3 +45,24 @@ void printShipInfo(Ship& ship) {
     cout << "Health: " << ship.getLength() - ship.getHitCount() << endl;
     cout << "Status: " << (ship.checkIsSunk() ? "Sunk" : "Not Sunk") << endl;
 }
+
+bool validateCoord(string coord, Board& board) {
+
+    if (coord.length() < 2 || 
+        coord.length() > 3 ||
+        !isalpha(coord[0]) || 
+        !isdigit(coord[1]) || 
+        (coord.length() == 3 && !isdigit(coord[2]))) {
+        cout << "Invalid format. Please use the format LetterNumber (e.g., A5).\n" << endl;
+        return coordinateSetup(board, ship);
+    }
+    
+    int col = toupper(coord[0]) - 'A';
+    int row = stoi(coord.substr(1)) - 1;
+
+    if (checkOutOfBounds(board, row, col) || !checkEmptyCell(board.getBoard()[row][col])) {
+        cout << "Invalid coordinates. Please try again.\n" << endl;
+        return false;
+    }
+    return true;
+}
