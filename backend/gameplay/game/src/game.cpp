@@ -23,7 +23,7 @@ void pvcGame::computerTurn() {
     col = nextInt(0, playerBoard.getColumns() - 1);
 
     // Check if cell is not already attacked
-    while (playerBoard.getBoard()[row][col] == "[X]" || playerBoard.getBoard()[row][col] == "[.]") {
+    while (playerBoard.getBoard()[row][col] == "[X]" || playerBoard.getBoard()[row][col] == "[O]") {
         row = nextInt(0, playerBoard.getRows() - 1);
         col = nextInt(0, playerBoard.getColumns() - 1);
     }

@@ -33,7 +33,7 @@ void attackShipOnBoard(Board &board, int row, int col) {
         if (!checkEmptyCell(board.getBoard()[row][col])) {
             board.getBoard()[row][col] = "[X]"; // Hit
         } else {
-            board.getBoard()[row][col] = "[.]"; // Miss
+            board.getBoard()[row][col] = "[O]"; // Miss
         }
     }
     board.updateBoard(board.getBoard());
