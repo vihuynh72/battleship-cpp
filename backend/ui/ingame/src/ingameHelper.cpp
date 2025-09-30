@@ -45,8 +45,3 @@ void printShipInfo(Ship& ship) {
     cout << "Health: " << ship.getLength() - ship.getHitCount() << endl;
     cout << "Status: " << (ship.checkIsSunk() ? "Sunk" : "Not Sunk") << endl;
 }
-
-void printCommentary() {
-    
-}
-

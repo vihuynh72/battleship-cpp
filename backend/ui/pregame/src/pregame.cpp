@@ -122,7 +122,7 @@ void pvcQuickGame() {
     player2Board.setBoardProperties(player2, 10, 10);
     
     cout << "----------------------------------------" << endl;
-    cout << "Do you want to place your ships manually? (y/n):\n";
+    cout << "Do you want to place your ships manually? (y/n): ";
     string choice;
     cin >> choice;
 
