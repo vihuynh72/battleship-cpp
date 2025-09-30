@@ -115,10 +115,7 @@ vector<int> coordinateSetup(Board& board, Ship& ship) {
         return coordinateSetup(board, ship);
     }
 
-    int col = toupper(coord[0]) - 'A';
-    int row = stoi(coord.substr(1)) - 1;
-    
-    return {row, col};
+    return coordToInt(coord);
 }
 
 void placeShip(Board& board, int row, int col) {

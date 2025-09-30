@@ -59,10 +59,16 @@ bool validateCoord(string coord, Board& board) {
     
     int col = toupper(coord[0]) - 'A';
     int row = stoi(coord.substr(1)) - 1;
-
+    
     if (checkOutOfBounds(board, row, col) || !checkEmptyCell(board.getBoard()[row][col])) {
         cout << "Invalid coordinates. Please try again.\n" << endl;
         return false;
     }
     return true;
+}
+
+vector<int> coordToInt(string coord) {
+    int col = toupper(coord[0]) - 'A';
+    int row = stoi(coord.substr(1)) - 1;
+    return {row, col};
 }
