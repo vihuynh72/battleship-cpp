@@ -27,10 +27,12 @@ include_directories(
     ui/ingame/include
     gameplay/board/include
     gameplay/ship/include
+    gameplay/game/include
     gameplay/mechanics/board/include
     gameplay/mechanics/ship/include
     gameplay/mechanics/space/include
     gameplay/mechanics/bot/include
+    gameplay/mechanics/game/include
 )
 
 # Source files (relative to backend/)
@@ -43,10 +45,13 @@ set(SOURCES
     ui/ingame/src/ingameHelper.cpp
     gameplay/board/src/board.cpp
     gameplay/ship/src/ship.cpp
+    gameplay/game/src/game.cpp
+    gameplay/game/src/gameMode.cpp
     gameplay/mechanics/space/src/space.cpp
     gameplay/mechanics/ship/src/ship.cpp
     gameplay/mechanics/board/src/board.cpp
     gameplay/mechanics/bot/src/bot.cpp
+    gameplay/mechanics/game/src/game.cpp
 )
 
 # Create the main executable
@@ -66,6 +71,8 @@ set(UI_SOURCES
 set(GAMEPLAY_SOURCES
     gameplay/board/src/board.cpp
     gameplay/ship/src/ship.cpp
+    gameplay/game/src/game.cpp
+    gameplay/game/src/gameMode.cpp
     gameplay/mechanics/space/src/space.cpp
     gameplay/mechanics/ship/src/ship.cpp
     gameplay/mechanics/board/src/board.cpp

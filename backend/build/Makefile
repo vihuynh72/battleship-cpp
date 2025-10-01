@@ -177,6 +177,54 @@ gameplay/board/src/board.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/board/src/board.cpp.s
 .PHONY : gameplay/board/src/board.cpp.s
 
+gameplay/game/src/game.o: gameplay/game/src/game.cpp.o
+.PHONY : gameplay/game/src/game.o
+
+# target to build an object file
+gameplay/game/src/game.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/game/src/game.cpp.o
+.PHONY : gameplay/game/src/game.cpp.o
+
+gameplay/game/src/game.i: gameplay/game/src/game.cpp.i
+.PHONY : gameplay/game/src/game.i
+
+# target to preprocess a source file
+gameplay/game/src/game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/game/src/game.cpp.i
+.PHONY : gameplay/game/src/game.cpp.i
+
+gameplay/game/src/game.s: gameplay/game/src/game.cpp.s
+.PHONY : gameplay/game/src/game.s
+
+# target to generate assembly for a file
+gameplay/game/src/game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/game/src/game.cpp.s
+.PHONY : gameplay/game/src/game.cpp.s
+
+gameplay/game/src/gameMode.o: gameplay/game/src/gameMode.cpp.o
+.PHONY : gameplay/game/src/gameMode.o
+
+# target to build an object file
+gameplay/game/src/gameMode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/game/src/gameMode.cpp.o
+.PHONY : gameplay/game/src/gameMode.cpp.o
+
+gameplay/game/src/gameMode.i: gameplay/game/src/gameMode.cpp.i
+.PHONY : gameplay/game/src/gameMode.i
+
+# target to preprocess a source file
+gameplay/game/src/gameMode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/game/src/gameMode.cpp.i
+.PHONY : gameplay/game/src/gameMode.cpp.i
+
+gameplay/game/src/gameMode.s: gameplay/game/src/gameMode.cpp.s
+.PHONY : gameplay/game/src/gameMode.s
+
+# target to generate assembly for a file
+gameplay/game/src/gameMode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/game/src/gameMode.cpp.s
+.PHONY : gameplay/game/src/gameMode.cpp.s
+
 gameplay/mechanics/board/src/board.o: gameplay/mechanics/board/src/board.cpp.o
 .PHONY : gameplay/mechanics/board/src/board.o
 
@@ -224,6 +272,30 @@ gameplay/mechanics/bot/src/bot.s: gameplay/mechanics/bot/src/bot.cpp.s
 gameplay/mechanics/bot/src/bot.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.s
 .PHONY : gameplay/mechanics/bot/src/bot.cpp.s
+
+gameplay/mechanics/game/src/game.o: gameplay/mechanics/game/src/game.cpp.o
+.PHONY : gameplay/mechanics/game/src/game.o
+
+# target to build an object file
+gameplay/mechanics/game/src/game.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/mechanics/game/src/game.cpp.o
+.PHONY : gameplay/mechanics/game/src/game.cpp.o
+
+gameplay/mechanics/game/src/game.i: gameplay/mechanics/game/src/game.cpp.i
+.PHONY : gameplay/mechanics/game/src/game.i
+
+# target to preprocess a source file
+gameplay/mechanics/game/src/game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/mechanics/game/src/game.cpp.i
+.PHONY : gameplay/mechanics/game/src/game.cpp.i
+
+gameplay/mechanics/game/src/game.s: gameplay/mechanics/game/src/game.cpp.s
+.PHONY : gameplay/mechanics/game/src/game.s
+
+# target to generate assembly for a file
+gameplay/mechanics/game/src/game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/battleship.dir/build.make CMakeFiles/battleship.dir/gameplay/mechanics/game/src/game.cpp.s
+.PHONY : gameplay/mechanics/game/src/game.cpp.s
 
 gameplay/mechanics/ship/src/ship.o: gameplay/mechanics/ship/src/ship.cpp.o
 .PHONY : gameplay/mechanics/ship/src/ship.o
@@ -432,12 +504,21 @@ help:
 	@echo "... gameplay/board/src/board.o"
 	@echo "... gameplay/board/src/board.i"
 	@echo "... gameplay/board/src/board.s"
+	@echo "... gameplay/game/src/game.o"
+	@echo "... gameplay/game/src/game.i"
+	@echo "... gameplay/game/src/game.s"
+	@echo "... gameplay/game/src/gameMode.o"
+	@echo "... gameplay/game/src/gameMode.i"
+	@echo "... gameplay/game/src/gameMode.s"
 	@echo "... gameplay/mechanics/board/src/board.o"
 	@echo "... gameplay/mechanics/board/src/board.i"
 	@echo "... gameplay/mechanics/board/src/board.s"
 	@echo "... gameplay/mechanics/bot/src/bot.o"
 	@echo "... gameplay/mechanics/bot/src/bot.i"
 	@echo "... gameplay/mechanics/bot/src/bot.s"
+	@echo "... gameplay/mechanics/game/src/game.o"
+	@echo "... gameplay/mechanics/game/src/game.i"
+	@echo "... gameplay/mechanics/game/src/game.s"
 	@echo "... gameplay/mechanics/ship/src/ship.o"
 	@echo "... gameplay/mechanics/ship/src/ship.i"
 	@echo "... gameplay/mechanics/ship/src/ship.s"
