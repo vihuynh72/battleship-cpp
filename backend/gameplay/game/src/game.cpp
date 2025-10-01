@@ -31,8 +31,8 @@ void pvcGame::playerTurn() {
         cin >> input;
         
         vector<int> coord = coordToInt(input);
-        row = coord[1];
-        col = coord[0];
+        row = coord[0];
+        col = coord[1];
 
         // Validate input
         if (row < 0 || row >= playerBoard.getRows() || col < 0 || col >= playerBoard.getColumns()) {
