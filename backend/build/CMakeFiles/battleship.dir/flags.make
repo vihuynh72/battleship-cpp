@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/workspaces/battleship-cpp/backend/ui/pregame/include -I/workspaces/battleship-cpp/backend/ui/ingame/include -I/workspaces/battleship-cpp/backend/gameplay/board/include -I/workspaces/battleship-cpp/backend/gameplay/ship/include -I/workspaces/battleship-cpp/backend/gameplay/mechanics/board/include -I/workspaces/battleship-cpp/backend/gameplay/mechanics/ship/include -I/workspaces/battleship-cpp/backend/gameplay/mechanics/space/include -I/workspaces/battleship-cpp/backend/gameplay/mechanics/bot/include
+CXX_INCLUDES = -I/workspaces/battleship-cpp/backend/ui/pregame/include -I/workspaces/battleship-cpp/backend/ui/ingame/include -I/workspaces/battleship-cpp/backend/gameplay/board/include -I/workspaces/battleship-cpp/backend/gameplay/ship/include -I/workspaces/battleship-cpp/backend/gameplay/game/include -I/workspaces/battleship-cpp/backend/gameplay/mechanics/board/include -I/workspaces/battleship-cpp/backend/gameplay/mechanics/ship/include -I/workspaces/battleship-cpp/backend/gameplay/mechanics/space/include -I/workspaces/battleship-cpp/backend/gameplay/mechanics/bot/include -I/workspaces/battleship-cpp/backend/gameplay/mechanics/game/include
 
 CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17
 

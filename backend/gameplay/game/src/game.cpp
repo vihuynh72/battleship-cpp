@@ -2,17 +2,56 @@
 #include "../include/gameMode.h"
 #include "../../board/include/board.h"
 #include "../../mechanics/bot/include/bot.h"
+#include "../../mechanics/ship/include/ship.h"
+#include "../../../../ui/ingame/include/ingameHelper.h"
 
-Game::Game() : player1Board(nullptr), player2Board(nullptr), isPvP(false), rules(rulesInstance) {
-    // Default constructor implementation
-}
+#include <iostream>
+#include <string>
 
-Game::Game(Board& p1Board, Board& p2Board) : player1Board(p1Board), player2Board(p2Board), isPvP(false), rules(rulesInstance) {
+using namespace std;
+
+// Create a default GameMode instance
+GameMode defaultGameMode;
+
+Game::Game(Board& p1Board, Board& p2Board) : player1Board(p1Board), player2Board(p2Board), isPvP(false), rules(defaultGameMode) {
     // Constructor with boards to start a PVC game
 }
 
-void pvCGame::playerTurn() {
-    
+Game::Game(Board& p1Board, Board& p2Board, bool pvp) : player1Board(p1Board), player2Board(p2Board), isPvP(pvp), rules(defaultGameMode) {
+    // Constructor with boards and PvP flag
+}
+
+void pvcGame::playerTurn() {
+    Board& playerBoard = getPlayer2Board(); // Player will get player 2's board and interact with it
+    int row, col;
+
+    while (true) {
+        cout << "Enter coordinates to attack (e.g., A5): ";
+        string input;
+        cin >> input;
+        
+        vector<int> coord = coordToInt(input);
+        row = coord[0];
+        col = coord[1];
+
+        // Validate input
+        if (row < 0 || row >= playerBoard.getRows() || col < 0 || col >= playerBoard.getColumns()) {
+            cout << "Invalid coordinates. Please try again." << endl;
+            continue;
+        }
+
+        // Check if already attacked
+        string cellContent = playerBoard.getBoard()[row][col];
+        if (cellContent == "[X]" || cellContent == "[O]") {
+            cout << "Already attacked this position. Try again." << endl;
+            continue;
+        }
+
+        // Attack and break out of loop
+        attackShipOnBoard(playerBoard, row, col);
+        cout << "You attacked position " << static_cast<char>('A' + col) << (row + 1) << endl;
+        break;
+    }
 }
 
 void pvcGame::computerTurn() {
@@ -29,6 +68,7 @@ void pvcGame::computerTurn() {
     }
 
     attackShipOnBoard(playerBoard, row, col);
+    cout << "Computer attacked position " << static_cast<char>('A' + col) << (row + 1) << endl;
 }
 
     
