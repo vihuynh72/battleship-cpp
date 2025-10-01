@@ -15,14 +15,11 @@ void ingame(Board& player1, Board& player2) {
 
     while (checkGameOver(player1, player2) == false) {
         game.playerTurn();
-        // Print Computer Board after player's turn
-        printBoard(player2);
         if (checkGameOver(player1, player2) == true) {
             break;
         }
         game.computerTurn();
-        // Print Player Board after computer's turn
-        printBoard(player1);
+        printBoardSideBySide(player1, player2);
     }
 }
 
