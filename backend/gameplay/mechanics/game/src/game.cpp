@@ -1,6 +1,7 @@
 #include "../include/game.h"
 #include "../../../board/include/board.h"
 #include "../../mechanics/board/include/board.h"
+#include <stdexcept>
 
 bool checkGameOver(Board& player1Board, Board& player2Board) {
     return checkAllShipsSunk(player1Board) || checkAllShipsSunk(player2Board);
