@@ -10,8 +10,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspaces/battleship-cpp/backend/app/main.cpp" "CMakeFiles/battleship.dir/app/main.cpp.o" "gcc" "CMakeFiles/battleship.dir/app/main.cpp.o.d"
   "/workspaces/battleship-cpp/backend/gameplay/board/src/board.cpp" "CMakeFiles/battleship.dir/gameplay/board/src/board.cpp.o" "gcc" "CMakeFiles/battleship.dir/gameplay/board/src/board.cpp.o.d"
+  "/workspaces/battleship-cpp/backend/gameplay/game/src/game.cpp" "CMakeFiles/battleship.dir/gameplay/game/src/game.cpp.o" "gcc" "CMakeFiles/battleship.dir/gameplay/game/src/game.cpp.o.d"
+  "/workspaces/battleship-cpp/backend/gameplay/game/src/gameMode.cpp" "CMakeFiles/battleship.dir/gameplay/game/src/gameMode.cpp.o" "gcc" "CMakeFiles/battleship.dir/gameplay/game/src/gameMode.cpp.o.d"
   "/workspaces/battleship-cpp/backend/gameplay/mechanics/board/src/board.cpp" "CMakeFiles/battleship.dir/gameplay/mechanics/board/src/board.cpp.o" "gcc" "CMakeFiles/battleship.dir/gameplay/mechanics/board/src/board.cpp.o.d"
   "/workspaces/battleship-cpp/backend/gameplay/mechanics/bot/src/bot.cpp" "CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o" "gcc" "CMakeFiles/battleship.dir/gameplay/mechanics/bot/src/bot.cpp.o.d"
+  "/workspaces/battleship-cpp/backend/gameplay/mechanics/game/src/game.cpp" "CMakeFiles/battleship.dir/gameplay/mechanics/game/src/game.cpp.o" "gcc" "CMakeFiles/battleship.dir/gameplay/mechanics/game/src/game.cpp.o.d"
   "/workspaces/battleship-cpp/backend/gameplay/mechanics/ship/src/ship.cpp" "CMakeFiles/battleship.dir/gameplay/mechanics/ship/src/ship.cpp.o" "gcc" "CMakeFiles/battleship.dir/gameplay/mechanics/ship/src/ship.cpp.o.d"
   "/workspaces/battleship-cpp/backend/gameplay/mechanics/space/src/space.cpp" "CMakeFiles/battleship.dir/gameplay/mechanics/space/src/space.cpp.o" "gcc" "CMakeFiles/battleship.dir/gameplay/mechanics/space/src/space.cpp.o.d"
   "/workspaces/battleship-cpp/backend/gameplay/ship/src/ship.cpp" "CMakeFiles/battleship.dir/gameplay/ship/src/ship.cpp.o" "gcc" "CMakeFiles/battleship.dir/gameplay/ship/src/ship.cpp.o.d"
