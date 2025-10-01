@@ -1,6 +1,8 @@
 #include "../include/ingameHelper.h"
 #include "../../../gameplay/board/include/board.h"
 #include "../../../gameplay/ship/include/ship.h"
+#include "../../../gameplay/mechanics/space/include/space.h"
+#include "../../pregame/include/pregameHelper.h"
 
 #include <iostream>
 #include <string>
@@ -54,7 +56,7 @@ bool validateCoord(string coord, Board& board) {
         !isdigit(coord[1]) || 
         (coord.length() == 3 && !isdigit(coord[2]))) {
         cout << "Invalid format. Please use the format LetterNumber (e.g., A5).\n" << endl;
-        return coordinateSetup(board, ship);
+        return false;
     }
     
     int col = toupper(coord[0]) - 'A';

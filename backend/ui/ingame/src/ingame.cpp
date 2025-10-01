@@ -11,10 +11,12 @@
 using namespace std;
 
 void ingame(Board& player1, Board& player2) {
-    pvCGame game(player1, player2);
+    pvcGame game(player1, player2);
 
     while (checkGameOver(player1, player2) == false) {
         game.playerTurn();
+        printBoard(player1);
+        printBoard(player2);
         if (checkGameOver(player1, player2) == true) {
             break;
         }

@@ -9,7 +9,7 @@ void printShipInfo(Ship&);
 
 bool checkGameOver(Board&, Board&);
 
-bool validateCoord();
+bool validateCoord(std::string, Board&);
 std::vector<int> coordToInt(std::string);
 
 #endif // INGAMEHELPER_H
