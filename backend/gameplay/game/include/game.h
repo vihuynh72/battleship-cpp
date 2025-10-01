@@ -6,9 +6,9 @@
 
 class Game {
     public:
-        virtual Game();
-        virtual Game(Board& p1Board, Board& p2Board);
-        virtual Game(Board& p1Board, Board& p2Board, bool pvp, GameMode& gameRules);
+        Game(Board& p1Board, Board& p2Board);
+        Game(Board& p1Board, Board& p2Board, bool pvp);
+        Game(Board& p1Board, Board& p2Board, bool pvp, GameMode& gameRules);
 
         //getter setters for players' boards
         Board& getPlayer1Board() { return player1Board; };
