@@ -71,6 +71,6 @@ bool validateCoord(string coord, Board& board) {
 
 vector<int> coordToInt(string coord) {
     int col = toupper(coord[0]) - 'A';
-    int row = stoi(coord.substr(1)) - 1;
+    int row = stoi(coord.substr(1)) - 1;  // Convert to 0-indexed (subtract 1, not add 1)
     return {row, col};
 }
