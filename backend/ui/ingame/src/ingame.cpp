@@ -21,6 +21,16 @@ void ingame(Board& player1, Board& player2) {
         game.computerTurn();
         printBoardSideBySide(player1, player2);
     }
+
+    Board& winner = checkWinner(player1, player2);
+    cout << "========================================" << endl;
+    cout << "                GAME OVER               " << endl;
+    cout << "The winner is " << winner.getPlayerName() << "!" << endl;
+    cout << "Congratulations!" << endl;
+    cout << "Here are the details of the winning ships:" << endl;
+    printShipList(winner);
+    cout << "Thank you for playing!" << endl;
+    cout << "========================================" << endl;
 }
 
 void playerTurn(Board& player) {
