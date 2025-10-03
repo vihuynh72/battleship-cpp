@@ -5,7 +5,7 @@
 using namespace std;
 
 bool checkAllShipsSunk(Board &board) {
-    vector<Ship> ships = board.getShipList();
+    vector<Ship>& ships = board.getShipList();
 
     if (ships.empty()) {
         return false; // No ships on the board
