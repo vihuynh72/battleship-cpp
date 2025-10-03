@@ -61,6 +61,6 @@ void Board::addShip(Ship &ship) {
     incrementTotalShips();
 }
 
-vector<Ship> Board::getShipList() {
+vector<Ship>& Board::getShipList() {
     return shipList;
 }

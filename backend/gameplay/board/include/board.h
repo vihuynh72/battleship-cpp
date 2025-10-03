@@ -21,7 +21,7 @@ class Board {
         int getTotalShips(); // Method to get total ship count
 
         void addShip(Ship&); // Method to add ship to ship list
-        std::vector<Ship> getShipList(); // Method to get list of ships
+        std::vector<Ship>& getShipList(); // Method to get list of ships
 
     private:
         // Player name
