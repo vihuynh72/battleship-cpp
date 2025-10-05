@@ -5,8 +5,16 @@
 using namespace std;
 
 bool checkAllShipsSunk(Board &board) {
-    if (board.getTotalShips() == 0) {
-        return true; // No ships on board
+    vector<Ship>& ships = board.getShipList();
+
+    if (ships.empty()) {
+        return false; // No ships on the board
     }
-    return false; // Placeholder, actual implementation needed
+
+    for (Ship& ship : ships) {
+        if (!ship.checkIsSunk()) {
+            return false; // Found a ship that is not sunk
+        }
+    }
+    return true; // All ships are sunk
 }

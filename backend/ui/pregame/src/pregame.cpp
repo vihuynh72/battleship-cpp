@@ -149,22 +149,15 @@ void pvcQuickGame() {
     }
     randomizeShipOnBoard(player2Board);
 
+    printBoardSideBySide(player1Board, player2Board);
+
     promptBeginGame(player1Board, player2Board, true);
 }
 
 void promptBeginGame(Board& player1Board, Board& player2Board, bool isPvC) {
-    cout << "========================================" << endl;
-    cout << "Setup complete! Do you want to start the game? (y/n)" << endl;
-    
-    string choice;
-    cin >> choice;
-    if (choice == "y") {
-        if (isPvC) {
-            startPvcGame(player1Board, player2Board);
-        } else {
-            startPvPGame(player1Board, player2Board);
-        }
+    if (isPvC) {
+        startPvcGame(player1Board, player2Board);
     } else {
-        displayHome();
+        startPvPGame(player1Board, player2Board);
     }
 }

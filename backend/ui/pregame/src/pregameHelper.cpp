@@ -108,7 +108,7 @@ Ship shipSetup(Board& board) {
 vector<int> coordinateSetup(Board& board, Ship& ship) {
     string coord;
 
-    cout << "Enter desired coordinates (e.g., A5): ";
+    cout << "\nEnter desired coordinates (e.g., A5): ";
     cin >> coord;
 
     if (!validateCoord(coord, board)) {

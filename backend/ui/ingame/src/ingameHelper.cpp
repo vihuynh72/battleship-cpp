@@ -27,7 +27,23 @@ void printBoard(Board& board) {
         }
 
         for (int j = 0; j < board.getColumns(); j++) {
-            cout << board.getBoard()[i][j] << " ";
+            string cell = board.getBoard()[i][j];
+            
+            // Convert ship index [0], [1], etc. to ship name letter for display
+            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
+                string content = cell.substr(1, cell.length() - 2);
+                // Check if it's a number (ship index)
+                if (!content.empty() && isdigit(content[0])) {
+                    int shipIndex = stoi(content);
+                    vector<Ship>& ships = board.getShipList();
+                    if (shipIndex >= 0 && shipIndex < ships.size()) {
+                        // Display first letter of ship name
+                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+                    }
+                }
+            }
+            
+            cout << cell << " ";
         }
         cout << endl;
     }
@@ -142,7 +158,23 @@ void printBoardRow(Board& board, int rowIndex, bool hasRow) {
         }
         // Print board cells
         for (int j = 0; j < board.getColumns(); j++) {
-            cout << board.getBoard()[rowIndex][j] << " ";
+            string cell = board.getBoard()[rowIndex][j];
+            
+            // Convert ship index [0], [1], etc. to ship name letter for display
+            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
+                string content = cell.substr(1, cell.length() - 2);
+                // Check if it's a number (ship index)
+                if (!content.empty() && isdigit(content[0])) {
+                    int shipIndex = stoi(content);
+                    vector<Ship>& ships = board.getShipList();
+                    if (shipIndex >= 0 && shipIndex < ships.size()) {
+                        // Display first letter of ship name
+                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+                    }
+                }
+            }
+            
+            cout << cell << " ";
         }
     } else {
         // Print empty spaces when board has fewer rows

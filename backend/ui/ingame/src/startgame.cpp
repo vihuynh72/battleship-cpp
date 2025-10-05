@@ -10,15 +10,19 @@
 using namespace std;
 
 void startPvcGame(Board& player1, Board& player2) {
+    cout << "========================================" << endl;
+    cout << "              STARTING GAME             " << endl;
     cout << "Starting game between " << player1.getPlayerName() << " and " << player2.getPlayerName() << "!" << endl;
-    cout << "Let the battle begin!" << endl;
+    cout << "Let the battle begin!\n" << endl;
 
     ingame(player1, player2);
 }
 
 void startPvPGame(Board& player1, Board& player2) {
+    cout << "========================================" << endl;
+    cout << "              STARTING GAME             " << endl;
     cout << "Starting game between " << player1.getPlayerName() << " and " << player2.getPlayerName() << "!" << endl;
-    cout << "Let the battle begin!" << endl;
+    cout << "Let the battle begin!\n" << endl;
 
     ingame(player1, player2);
 }

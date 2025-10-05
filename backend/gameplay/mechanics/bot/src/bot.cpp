@@ -25,7 +25,6 @@ void randomizeShipOnBoard(Board& botBoard) {    // Randomly place 5 ships of var
                 }
       }
     }
-    printBoard(botBoard);
 }
 
 int nextInt(int lo, int hi) {
