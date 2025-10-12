@@ -23,6 +23,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 # Include directories (relative to backend/)
 include_directories(
+    ui/common/include
     ui/pregame/include
     ui/ingame/include
     gameplay/board/include

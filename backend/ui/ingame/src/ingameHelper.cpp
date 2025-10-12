@@ -3,83 +3,134 @@
 #include "../../../gameplay/ship/include/ship.h"
 #include "../../../gameplay/mechanics/space/include/space.h"
 #include "../../pregame/include/pregameHelper.h"
+#include "../../common/include/uiTheme.h"
 
+#include <algorithm>
+#include <cctype>
 #include <iostream>
 #include <string>
 #include <vector>
 
 using namespace std;
+using namespace ui::theme;
+
+namespace {
+
+bool isShipIndex(const string& cell) {
+    return cell.length() >= 3 && cell.front() == '[' && cell.back() == ']';
+}
+
+string shipInitial(Ship& ship) {
+    string name = ship.getName();
+    if (name.empty()) {
+        return "?";
+    }
+    return string(1, static_cast<char>(toupper(name[0])));
+}
+
+string formatShipCell(Board& board, const string& cell, bool hideShips) {
+    string indexContent = cell.substr(1, cell.length() - 2);
+    if (indexContent.empty() || !isdigit(indexContent[0])) {
+        return stylize(cell, {FG_WHITE});
+    }
+
+    int shipIndex = stoi(indexContent);
+    vector<Ship>& ships = board.getShipList();
+    if (shipIndex < 0 || shipIndex >= static_cast<int>(ships.size())) {
+        return stylize("[?]", {FG_GRAY});
+    }
+
+    Ship& ship = ships[shipIndex];
+    if (hideShips) {
+        return stylize("[~]", {FG_BLUE});
+    }
+
+    const char* color = ship.checkIsSunk() ? FG_RED : FG_YELLOW;
+    return stylize("[" + shipInitial(ship) + "]", {BOLD, color});
+}
+
+string formatCell(Board& board, const string& rawCell, bool hideShips) {
+    if (rawCell == "[ ]") {
+        return stylize("[~]", {FG_BLUE});
+    }
+    if (rawCell == "[O]") {
+        return stylize("[○]", {FG_CYAN});
+    }
+    if (rawCell == "[X]") {
+        return stylize("[X]", {BOLD, FG_RED});
+    }
+    if (isShipIndex(rawCell)) {
+        return formatShipCell(board, rawCell, hideShips);
+    }
+    return stylize(rawCell, {FG_WHITE});
+}
+
+} // namespace
 
 void printBoard(Board& board) {
     cout << endl;
-    cout << board.getPlayerName() << "'s Board: " << endl;
-    cout << "   ";
+    int headerWidth = board.getColumns() * 4 + 8;
+    printDivider('=', headerWidth);
+    cout << accent(centerText(board.getPlayerName() + "'s Tactical Map", headerWidth)) << endl;
+    printDivider('=', headerWidth);
+
+    cout << "    ";
     for (int j = 0; j < board.getColumns(); j++) {
-        cout << "  " << static_cast<char>('A' + j) << " ";
+        string letter(1, static_cast<char>('A' + j));
+        cout << stylize(" " + letter + " ", {BOLD, FG_CYAN});
     }
     cout << endl;
 
     for (int i = 0; i < board.getRows(); i++) {
-        if (i < 9) {
-            cout << i + 1 << "   ";
-        } else {
-            cout << i + 1 << "  ";
-        }
+        string rowLabel = (i < 9 ? " " : "") + to_string(i + 1);
+        cout << stylize(rowLabel, {BOLD, FG_MAGENTA}) << "  ";
 
         for (int j = 0; j < board.getColumns(); j++) {
-            string cell = board.getBoard()[i][j];
-            
-            // Convert ship index [0], [1], etc. to ship name letter for display
-            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
-                string content = cell.substr(1, cell.length() - 2);
-                // Check if it's a number (ship index)
-                if (!content.empty() && isdigit(content[0])) {
-                    int shipIndex = stoi(content);
-                    vector<Ship>& ships = board.getShipList();
-                    if (shipIndex >= 0 && shipIndex < ships.size()) {
-                        // Display first letter of ship name
-                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
-                    }
-                }
-            }
-            
-            cout << cell << " ";
+            cout << formatCell(board, board.getBoard()[i][j], false) << " ";
         }
         cout << endl;
     }
 }
 
 void printShipList(Board& board) {
-    cout << board.getPlayerName() << "'s Ships: " << endl;
+    cout << endl << accent(board.getPlayerName() + "'s Fleet Status:") << endl;
+    if (board.getShipList().empty()) {
+        cout << muted("No vessels deployed yet.\n");
+        return;
+    }
+
+    printDivider('-', 48, FG_BLUE);
     for (Ship& ship : board.getShipList()) {
-        cout << "------------------------" << endl;
         printShipInfo(ship);
-        cout << "------------------------" << endl;
+        printDivider('-', 48, FG_BLUE);
     }
 }
 
 void printShipInfo(Ship& ship) {
-    cout << "Ship Name: " << ship.getName() << endl;
-    cout << "Health: " << ship.getLength() - ship.getHitCount() << endl;
-    cout << "Status: " << (ship.checkIsSunk() ? "Sunk" : "Not Sunk") << endl;
+    int integrity = ship.getLength() - ship.getHitCount();
+    string status = ship.checkIsSunk() ? danger("SUNK") : success("OPERATIONAL");
+
+    cout << success("Ship: ") << accent(ship.getName()) << endl;
+    cout << "   Status: " << status << endl;
+    cout << "   Integrity: " << healthBar(integrity, ship.getLength())
+         << " " << muted(to_string(integrity) + "/" + to_string(ship.getLength())) << endl;
 }
 
 bool validateCoord(string coord, Board& board) {
-
-    if (coord.length() < 2 || 
+    if (coord.length() < 2 ||
         coord.length() > 3 ||
-        !isalpha(coord[0]) || 
-        !isdigit(coord[1]) || 
+        !isalpha(coord[0]) ||
+        !isdigit(coord[1]) ||
         (coord.length() == 3 && !isdigit(coord[2]))) {
-        cout << "Invalid format. Please use the format LetterNumber (e.g., A5).\n" << endl;
+        cout << danger("Invalid format. Use LetterNumber (e.g., A5).\n") << endl;
         return false;
     }
-    
+
     int col = toupper(coord[0]) - 'A';
     int row = stoi(coord.substr(1)) - 1;
-    
+
     if (checkOutOfBounds(board, row, col) || !checkEmptyCell(board.getBoard()[row][col])) {
-        cout << "Invalid coordinates. Please try again.\n" << endl;
+        cout << danger("Invalid coordinates. The location is occupied or out of bounds.\n") << endl;
         return false;
     }
     return true;
@@ -87,97 +138,61 @@ bool validateCoord(string coord, Board& board) {
 
 vector<int> coordToInt(string coord) {
     int col = toupper(coord[0]) - 'A';
-    int row = stoi(coord.substr(1)) - 1;  // Convert to 0-indexed (subtract 1, not add 1)
+    int row = stoi(coord.substr(1)) - 1;
     return {row, col};
 }
 
+void printBoardSideBySide(Board& board1, Board& board2, bool hideSecondBoardShips) {
+    const int CELL_WIDTH = 4;
+    const int ROW_NUM_WIDTH = 4;
+    const int BOARD_SEPARATOR = 7;
 
-void printBoardSideBySide(Board& board1, Board& board2) {
-    const int CELL_WIDTH = 4;  // Each cell takes 4 characters (char + 3 spaces)
-    const int ROW_NUM_WIDTH = 4;  // Row number column width
-    const int BOARD_SEPARATOR = 7;  // Space between boards
-    
-    // Calculate board widths
     int board1Width = ROW_NUM_WIDTH + (board1.getColumns() * CELL_WIDTH) - 1;
     int board2Width = ROW_NUM_WIDTH + (board2.getColumns() * CELL_WIDTH) - 1;
-    
-    // Create board names
-    string board1Name = board1.getPlayerName() + "'s Board:";
-    string board2Name = board2.getPlayerName() + "'s Board:";
-    
-    // Calculate total width needed for the headline
     int totalWidth = board1Width + BOARD_SEPARATOR + board2Width;
-    
-    // Create and format the headline
-    string nameHeadline = string(totalWidth, ' ');
-    nameHeadline.replace(0, board1Name.length(), board1Name);
-    
-    // Position the second board name
-    int board2NameStart = board1Width + BOARD_SEPARATOR + 2;
-    if (board2NameStart + board2Name.length() <= nameHeadline.length()) {
-        nameHeadline.replace(board2NameStart, board2Name.length(), board2Name);
-    }
 
     cout << endl;
-    cout << nameHeadline << endl;
-    
-    // Print column headers for both boards
-    cout << "     ";
+    printDivider('=', totalWidth, FG_NAVY);
+
+    string board1Name = board1.getPlayerName() + "'s Board";
+    string board2Name = board2.getPlayerName() + "'s Board";
+    cout << accent(centerText(board1Name, board1Width))
+         << string(BOARD_SEPARATOR, ' ')
+         << accent(centerText(board2Name, board2Width)) << endl;
+
+    printDivider('-', totalWidth, FG_BLUE);
+
+    cout << "    ";
     for (int j = 0; j < board1.getColumns(); j++) {
-        cout << static_cast<char>('A' + j) << "   ";
+        string letter(1, static_cast<char>('A' + j));
+        cout << stylize(" " + letter + " ", {BOLD, FG_CYAN});
     }
-    cout << "           ";  // 7 spaces + 4 extra = 11 spaces total
+    cout << string(BOARD_SEPARATOR, ' ');
     for (int j = 0; j < board2.getColumns(); j++) {
-        cout << static_cast<char>('A' + j) << "   ";
+        string letter(1, static_cast<char>('A' + j));
+        cout << stylize(" " + letter + " ", {BOLD, FG_CYAN});
     }
     cout << endl;
 
-    // Print rows for both boards
     int maxRows = max(board1.getRows(), board2.getRows());
     for (int i = 0; i < maxRows; i++) {
-        // Print board1 row
-        printBoardRow(board1, i, i < board1.getRows());
-        
-        // Print separator between the two boards
-        cout << "       ";
-        
-        // Print board2 row
-        printBoardRow(board2, i, i < board2.getRows());
-        
+        printBoardRow(board1, i, i < board1.getRows(), false);
+        cout << string(BOARD_SEPARATOR, ' ');
+        printBoardRow(board2, i, i < board2.getRows(), hideSecondBoardShips);
         cout << endl;
     }
+
+    printDivider('=', totalWidth, FG_NAVY);
 }
 
-void printBoardRow(Board& board, int rowIndex, bool hasRow) {
+void printBoardRow(Board& board, int rowIndex, bool hasRow, bool hideShips) {
     if (hasRow) {
-        // Print row number with proper formatting
-        if (rowIndex < 9) {
-            cout << " " << rowIndex + 1 << "  ";
-        } else {
-            cout << rowIndex + 1 << "  ";
-        }
-        // Print board cells
+        string rowLabel = (rowIndex < 9 ? " " : "") + to_string(rowIndex + 1);
+        cout << stylize(rowLabel, {BOLD, FG_MAGENTA}) << "  ";
         for (int j = 0; j < board.getColumns(); j++) {
-            string cell = board.getBoard()[rowIndex][j];
-            
-            // Convert ship index [0], [1], etc. to ship name letter for display
-            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
-                string content = cell.substr(1, cell.length() - 2);
-                // Check if it's a number (ship index)
-                if (!content.empty() && isdigit(content[0])) {
-                    int shipIndex = stoi(content);
-                    vector<Ship>& ships = board.getShipList();
-                    if (shipIndex >= 0 && shipIndex < ships.size()) {
-                        // Display first letter of ship name
-                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
-                    }
-                }
-            }
-            
-            cout << cell << " ";
+            cout << formatCell(board, board.getBoard()[rowIndex][j], hideShips) << " ";
         }
     } else {
-        // Print empty spaces when board has fewer rows
         cout << "    ";
         for (int j = 0; j < board.getColumns(); j++) {
             cout << "    ";
