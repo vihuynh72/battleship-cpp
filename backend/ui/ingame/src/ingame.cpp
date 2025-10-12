@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void ingame(Board& player1, Board& player2) {
+void pvcIngame(Board& player1, Board& player2) {
     pvcGame game(player1, player2);
 
     while (checkGameOver(player1, player2) == false) {
