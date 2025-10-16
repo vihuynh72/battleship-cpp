@@ -112,9 +112,8 @@ void pvcQuickGame() {
     cout << "========================================" << endl;
     cout << "               Quick Game               \n" << endl;
 
-    vector<string> players = playerSetup(true);
-    string player1 = players[0];
-    string player2 = players[1];
+    string player1 = "Player";
+    string player2 = "Computer";
 
     Board player1Board;
     player1Board.setBoardProperties(player1, 10, 10);

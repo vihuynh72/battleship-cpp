@@ -15,7 +15,7 @@ void startPvcGame(Board& player1, Board& player2) {
     cout << "Starting game between " << player1.getPlayerName() << " and " << player2.getPlayerName() << "!" << endl;
     cout << "Let the battle begin!\n" << endl;
 
-    ingame(player1, player2);
+    pvcIngame(player1, player2);
 }
 
 void startPvPGame(Board& player1, Board& player2) {
@@ -24,5 +24,5 @@ void startPvPGame(Board& player1, Board& player2) {
     cout << "Starting game between " << player1.getPlayerName() << " and " << player2.getPlayerName() << "!" << endl;
     cout << "Let the battle begin!\n" << endl;
 
-    ingame(player1, player2);
+    pvcIngame(player1, player2);
 }

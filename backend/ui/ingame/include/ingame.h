@@ -4,7 +4,7 @@
 #include "../../../gameplay/board/include/board.h"
 #include "../../../gameplay/ship/include/ship.h"
 
-void ingame(Board&, Board&);
+void pvcIngame(Board&, Board&);
 
 void playerTurn(Board&);
 void attackTurn(Board&, int, int);
