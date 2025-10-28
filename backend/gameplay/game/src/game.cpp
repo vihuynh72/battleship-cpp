@@ -44,6 +44,28 @@ void pvcGame::playerTurn() {
             continue;
         }
 
+        if (input == "kill") {
+            cout << "🚨 DEBUG MODE: Orbital strike authorized! Annihilating enemy fleet..." << endl;
+            // Sink all enemy ships instantly
+            for (Ship& ship : playerBoard.getShipList()) {
+                while (!ship.checkIsSunk()) {
+                    ship.incrementHitCount();
+                }
+            }
+            cout << "⚡ All enemy vessels destroyed! Victory is yours!" << endl;
+            // Mark all ship cells as hit on the board
+            for (int i = 0; i < playerBoard.getRows(); i++) {
+                for (int j = 0; j < playerBoard.getColumns(); j++) {
+                    string cell = playerBoard.getBoard()[i][j];
+                    if (cell != "[ ]" && cell != "[X]" && cell != "[O]") {
+                        playerBoard.getBoard()[i][j] = "[X]";
+                    }
+                }
+            }
+            printBoardSideBySide(getPlayer1Board(), playerBoard);
+            return; // End turn immediately
+        }
+
         vector<int> coord = coordToInt(input);
         row = coord[0];
         col = coord[1];

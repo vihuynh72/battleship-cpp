@@ -33,7 +33,8 @@ void printBoard(Board& board) {
             string cell = board.getBoard()[i][j];
 
             if (board.getHideShips()) {
-                if (!checkEmptyCell(cell) && cell != "[X]" && cell != "[O]") {
+                // Hide all cells except hits ([X]) and misses ([O])
+                if (cell != "[X]" && cell != "[O]") {
                     cell = "[~]";
                 }
             } else {
@@ -171,7 +172,8 @@ void printBoardRow(Board& board, int rowIndex, bool hasRow) {
             string cell = board.getBoard()[rowIndex][j];
 
             if (board.getHideShips()) {
-                if (!checkEmptyCell(cell) && cell != "[X]" && cell != "[O]") {
+                // Hide all cells except hits ([X]) and misses ([O])
+                if (cell != "[X]" && cell != "[O]") {
                     cell = "[~]";
                 }
             } else {
