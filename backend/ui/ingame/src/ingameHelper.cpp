@@ -4,64 +4,118 @@
 #include "../../../gameplay/mechanics/space/include/space.h"
 #include "../../pregame/include/pregameHelper.h"
 
+#include <algorithm>
+#include <cctype>
+#include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
 using namespace std;
 
-void printBoard(Board& board) {
-    cout << endl;
-    cout << board.getPlayerName() << "'s Board: " << endl;
-    cout << "   ";
-    for (int j = 0; j < board.getColumns(); j++) {
-        cout << "  " << static_cast<char>('A' + j) << " ";
+namespace {
+
+string getDisplayCell(Board& board, int row, int col) {
+    string cell = board.getBoard()[row][col];
+
+    if (cell.length() >= 3 && cell.front() == '[' && cell.back() == ']') {
+        string content = cell.substr(1, cell.length() - 2);
+        bool isNumeric = !content.empty() &&
+                         all_of(content.begin(), content.end(), [](unsigned char ch) {
+                             return isdigit(ch);
+                         });
+
+        if (isNumeric) {
+            int shipIndex = stoi(content);
+            vector<Ship>& ships = board.getShipList();
+            if (shipIndex >= 0 && shipIndex < static_cast<int>(ships.size())) {
+                string letter = ships[shipIndex].getName().substr(0, 1);
+                if (!letter.empty()) {
+                    letter[0] = toupper(static_cast<unsigned char>(letter[0]));
+                }
+                cell = "[" + letter + "]";
+            }
+        }
     }
-    cout << endl;
+
+    return cell;
+}
+
+string buildHorizontalBorder(int cols) {
+    string border = "   +";
+    for (int j = 0; j < cols; j++) {
+        border += "-----+";
+    }
+    return border;
+}
+
+string buildBoardRowString(Board& board, int rowIndex) {
+    stringstream rowStream;
+    rowStream << " " << setw(2) << right << rowIndex + 1 << " |";
+
+    for (int j = 0; j < board.getColumns(); j++) {
+        rowStream << " " << setw(3) << left << getDisplayCell(board, rowIndex, j) << " |";
+    }
+
+    return rowStream.str();
+}
+
+vector<string> renderBoard(Board& board) {
+    vector<string> lines;
+    string title = board.getPlayerName() + "'s Battle Grid";
+    string underline(title.length(), '=');
+
+    lines.push_back(title);
+    lines.push_back(underline);
+    lines.push_back("Legend: [ ] Empty  [O] Miss  [X] Hit  [Initial] Ship segment");
+    lines.push_back("");
+
+    stringstream header;
+    header << "     ";
+    for (int j = 0; j < board.getColumns(); j++) {
+        header << "  " << static_cast<char>('A' + j) << "   ";
+    }
+
+    lines.push_back(header.str());
+
+    string border = buildHorizontalBorder(board.getColumns());
+    lines.push_back(border);
 
     for (int i = 0; i < board.getRows(); i++) {
-        if (i < 9) {
-            cout << i + 1 << "   ";
-        } else {
-            cout << i + 1 << "  ";
-        }
+        lines.push_back(buildBoardRowString(board, i));
+        lines.push_back(border);
+    }
 
-        for (int j = 0; j < board.getColumns(); j++) {
-            string cell = board.getBoard()[i][j];
-            
-            // Convert ship index [0], [1], etc. to ship name letter for display
-            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
-                string content = cell.substr(1, cell.length() - 2);
-                // Check if it's a number (ship index)
-                if (!content.empty() && isdigit(content[0])) {
-                    int shipIndex = stoi(content);
-                    vector<Ship>& ships = board.getShipList();
-                    if (shipIndex >= 0 && shipIndex < ships.size()) {
-                        // Display first letter of ship name
-                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
-                    }
-                }
-            }
-            
-            cout << cell << " ";
-        }
-        cout << endl;
+    return lines;
+}
+
+} // namespace
+
+void printBoard(Board& board) {
+    cout << endl;
+
+    vector<string> boardLines = renderBoard(board);
+    for (const string& line : boardLines) {
+        cout << line << endl;
     }
 }
 
 void printShipList(Board& board) {
-    cout << board.getPlayerName() << "'s Ships: " << endl;
+    cout << board.getPlayerName() << "'s Fleet Overview" << endl;
+    cout << string(board.getPlayerName().length() + 19, '=') << endl;
     for (Ship& ship : board.getShipList()) {
-        cout << "------------------------" << endl;
+        cout << "• ";
         printShipInfo(ship);
-        cout << "------------------------" << endl;
     }
 }
 
 void printShipInfo(Ship& ship) {
-    cout << "Ship Name: " << ship.getName() << endl;
-    cout << "Health: " << ship.getLength() - ship.getHitCount() << endl;
-    cout << "Status: " << (ship.checkIsSunk() ? "Sunk" : "Not Sunk") << endl;
+    int remainingHealth = ship.getLength() - ship.getHitCount();
+    cout << ship.getName() << " | Length: " << ship.getLength()
+         << " | Integrity: " << remainingHealth << " segment"
+         << (remainingHealth == 1 ? "" : "s")
+         << " | Status: " << (ship.checkIsSunk() ? "SUNK" : "AFLOAT") << endl;
 }
 
 bool validateCoord(string coord, Board& board) {
@@ -93,94 +147,43 @@ vector<int> coordToInt(string coord) {
 
 
 void printBoardSideBySide(Board& board1, Board& board2) {
-    const int CELL_WIDTH = 4;  // Each cell takes 4 characters (char + 3 spaces)
-    const int ROW_NUM_WIDTH = 4;  // Row number column width
-    const int BOARD_SEPARATOR = 7;  // Space between boards
-    
-    // Calculate board widths
-    int board1Width = ROW_NUM_WIDTH + (board1.getColumns() * CELL_WIDTH) - 1;
-    int board2Width = ROW_NUM_WIDTH + (board2.getColumns() * CELL_WIDTH) - 1;
-    
-    // Create board names
-    string board1Name = board1.getPlayerName() + "'s Board:";
-    string board2Name = board2.getPlayerName() + "'s Board:";
-    
-    // Calculate total width needed for the headline
-    int totalWidth = board1Width + BOARD_SEPARATOR + board2Width;
-    
-    // Create and format the headline
-    string nameHeadline = string(totalWidth, ' ');
-    nameHeadline.replace(0, board1Name.length(), board1Name);
-    
-    // Position the second board name
-    int board2NameStart = board1Width + BOARD_SEPARATOR + 2;
-    if (board2NameStart + board2Name.length() <= nameHeadline.length()) {
-        nameHeadline.replace(board2NameStart, board2Name.length(), board2Name);
+    vector<string> board1Lines = renderBoard(board1);
+    vector<string> board2Lines = renderBoard(board2);
+
+    size_t board1Width = 0;
+    for (const string& line : board1Lines) {
+        board1Width = max(board1Width, line.length());
     }
 
-    cout << endl;
-    cout << nameHeadline << endl;
-    
-    // Print column headers for both boards
-    cout << "     ";
-    for (int j = 0; j < board1.getColumns(); j++) {
-        cout << static_cast<char>('A' + j) << "   ";
-    }
-    cout << "           ";  // 7 spaces + 4 extra = 11 spaces total
-    for (int j = 0; j < board2.getColumns(); j++) {
-        cout << static_cast<char>('A' + j) << "   ";
-    }
-    cout << endl;
+    size_t maxLines = max(board1Lines.size(), board2Lines.size());
+    const size_t gapWidth = 8;
 
-    // Print rows for both boards
-    int maxRows = max(board1.getRows(), board2.getRows());
-    for (int i = 0; i < maxRows; i++) {
-        // Print board1 row
-        printBoardRow(board1, i, i < board1.getRows());
-        
-        // Print separator between the two boards
-        cout << "       ";
-        
-        // Print board2 row
-        printBoardRow(board2, i, i < board2.getRows());
-        
-        cout << endl;
+    string board1Title = board1.getPlayerName() + "'s Command";
+    string board2Title = board2.getPlayerName() + "'s Command";
+
+    cout << endl;
+    cout << left << setw(board1Width) << board1Title;
+    cout << string(gapWidth, ' ');
+    cout << board2Title << endl;
+    cout << left << setw(board1Width) << string(board1Title.length(), '-');
+    cout << string(gapWidth, ' ');
+    cout << string(board2Title.length(), '-') << endl;
+    cout << right;
+
+    for (size_t i = 0; i < maxLines; i++) {
+        string leftLine = i < board1Lines.size() ? board1Lines[i] : "";
+        string rightLine = i < board2Lines.size() ? board2Lines[i] : "";
+
+        size_t padding = board1Width > leftLine.length() ? board1Width - leftLine.length() : 0;
+
+        cout << leftLine << string(padding + gapWidth, ' ') << rightLine << endl;
     }
 }
 
 void printBoardRow(Board& board, int rowIndex, bool hasRow) {
     if (hasRow) {
-        // Print row number with proper formatting
-        if (rowIndex < 9) {
-            cout << " " << rowIndex + 1 << "  ";
-        } else {
-            cout << rowIndex + 1 << "  ";
-        }
-        // Print board cells
-        for (int j = 0; j < board.getColumns(); j++) {
-            string cell = board.getBoard()[rowIndex][j];
-            
-            // Convert ship index [0], [1], etc. to ship name letter for display
-            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
-                string content = cell.substr(1, cell.length() - 2);
-                // Check if it's a number (ship index)
-                if (!content.empty() && isdigit(content[0])) {
-                    int shipIndex = stoi(content);
-                    vector<Ship>& ships = board.getShipList();
-                    if (shipIndex >= 0 && shipIndex < ships.size()) {
-                        // Display first letter of ship name
-                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
-                    }
-                }
-            }
-            
-            cout << cell << " ";
-        }
+        cout << buildBoardRowString(board, rowIndex);
     } else {
-        // Print empty spaces when board has fewer rows
-        cout << "    ";
-        for (int j = 0; j < board.getColumns(); j++) {
-            cout << "    ";
-        }
+        cout << string(board.getColumns() * 6 + 4, ' ');
     }
 }
