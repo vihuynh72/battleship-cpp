@@ -11,11 +11,12 @@
 using namespace std;
 
 void printBoard(Board& board) {
-    cout << endl;
-    cout << "=== " << board.getPlayerName() << "'s Fleet Map ===" << endl;
+    cout << "\n╔═══ " << board.getPlayerName() << "'s Fleet Map ═══╗" << endl;
     if (board.getHideShips()) {
-        cout << "(Enemy sonar interference active. Issue the \"show\" command to reveal their fleet!)" << endl;
+        cout << "║ 🌊 Enemy sonar interference active    ║" << endl;
+        cout << "║ 💡 Use \"show\" to reveal their fleet  ║" << endl;
     }
+    cout << "╚════════════════════════════════════════╝" << endl;
     cout << "   ";
     for (int j = 0; j < board.getColumns(); j++) {
         cout << "  " << static_cast<char>('A' + j) << " ";
@@ -60,19 +61,44 @@ void printBoard(Board& board) {
 }
 
 void printShipList(Board& board) {
-    cout << endl;
-    cout << board.getPlayerName() << "'s Battle Readiness Report" << endl;
+    cout << "\n┌────────────────────────────────────────┐" << endl;
+    cout << "│  " << board.getPlayerName() << "'s Battle Readiness Report";
+    // Calculate padding
+    int nameLen = board.getPlayerName().length();
+    int padding = 40 - 31 - nameLen - 2;
+    for (int i = 0; i < padding; i++) cout << " ";
+    cout << "     │" << endl;
+    cout << "└────────────────────────────────────────┘" << endl;
     for (Ship& ship : board.getShipList()) {
-        cout << "------------------------" << endl;
+        cout << "\n┌─ " << ship.getName();
+        int shipNameLen = ship.getName().length();
+        for (int i = 0; i < 35 - shipNameLen; i++) cout << "─";
+        cout << "┐" << endl;
         printShipInfo(ship);
-        cout << "------------------------" << endl;
+        cout << "└─────────────────────────────────────┘" << endl;
     }
 }
 
 void printShipInfo(Ship& ship) {
-    cout << "Vessel: " << ship.getName() << endl;
-    cout << "Hull Integrity: " << ship.getLength() - ship.getHitCount() << " / " << ship.getLength() << endl;
-    cout << "Status: " << (ship.checkIsSunk() ? "Sunk beneath the waves" : "Operational") << endl;
+    cout << "│ ⚓ Vessel: " << ship.getName();
+    int nameLen = ship.getName().length();
+    int padding = 38 - 11 - nameLen - 2;
+    for (int i = 0; i < padding; i++) cout << " ";
+    cout << "│" << endl;
+    
+    cout << "│ ⚡ Hull Integrity: " << ship.getLength() - ship.getHitCount() << " / " << ship.getLength();
+    // Calculate padding for hull integrity line
+    string integrityStr = to_string(ship.getLength() - ship.getHitCount()) + " / " + to_string(ship.getLength());
+    int integrityPadding = 37 - 18 - integrityStr.length() - 2;
+    for (int i = 0; i < integrityPadding; i++) cout << " ";
+    cout << "│" << endl;
+    
+    string status = ship.checkIsSunk() ? "💀 Sunk beneath the waves" : "✓ Operational";
+    cout << "│ " << status;
+    int statusLen = ship.checkIsSunk() ? 26 : 14;
+    int statusPadding = 40 - 1 - statusLen - 2;
+    for (int i = 0; i < statusPadding; i++) cout << " ";
+    cout << "│" << endl;
 }
 
 bool validateCoord(string coord, Board& board) {
