@@ -120,9 +120,17 @@ vector<int> coordinateSetup(Board& board, Ship& ship) {
 
 void placeShip(Board& board, int row, int col) {
     for (int i = 0; i < 5; i++) {
-        cout << "----------------------------------------" << endl;
-        cout << "Preparing vessel " << i + 1 << " for launch\n" << endl;
+        cout << "\n┌──────────────────────────────────────┐" << endl;
+        cout << "│  ⚓ Deploying Vessel " << (i + 1) << " of 5          │" << endl;
+        cout << "└──────────────────────────────────────┘\n" << endl;
         shipSetup(board);
     }
-    cout << "\nFleet fully deployed for " << board.getPlayerName() << "!" << endl;
+    cout << "\n╔════════════════════════════════════════╗" << endl;
+    cout << "║  ✓ Fleet fully deployed for " << board.getPlayerName();
+    // Calculate padding
+    int nameLen = board.getPlayerName().length();
+    int padding = 40 - 27 - nameLen - 2;
+    for (int i = 0; i < padding; i++) cout << " ";
+    cout << "║" << endl;
+    cout << "╚════════════════════════════════════════╝" << endl;
 }
