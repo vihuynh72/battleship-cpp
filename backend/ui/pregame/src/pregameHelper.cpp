@@ -11,13 +11,13 @@ using namespace std;
 
 vector<int> dimensionSetup() {
     string dimension;
-    cout << "Enter board dimensions (RowsxColumns) separated by 'x' (e.g., 10x10): ";
+    cout << "Set the ocean grid (RowsxColumns, e.g., 10x10): ";
     cin >> dimension;
     // find x or X
     size_t xPos = dimension.find('x');
     if (xPos == string::npos) { // if 'x' not found
         if ((xPos = dimension.find('X')) == string::npos) {
-            cout << "Invalid format. Please use the format RowsxColumns (e.g., 10x10).\n" << endl;
+            cout << "Sensors couldn't parse that. Use RowsxColumns (e.g., 10x10).\n" << endl;
             return dimensionSetup();
         }
     }
@@ -33,14 +33,14 @@ vector<string> playerSetup(bool isPvC) {
     string player2;
 
     if (isPvC) {
-        cout << "Enter Your Name: ";
+        cout << "Enter your callsign, Captain: ";
         cin >> player1;
         return {player1, "Computer"};
     } else {
-        cout << "Enter Player 1 Name: ";
+        cout << "Enter Player 1 callsign: ";
         cin >> player1;
 
-        cout << "Enter Player 2 Name: ";
+        cout << "Enter Player 2 callsign: ";
         cin >> player2;
         return {player1, player2};
     }
@@ -48,13 +48,13 @@ vector<string> playerSetup(bool isPvC) {
 
 string directionSetup() {
     string direction;
-    cout << "Enter ship direction (h for horizontal/v for vertical): ";
+    cout << "Set ship heading (h for horizontal / v for vertical): ";
     cin >> direction;
     direction = (direction == "h" || direction == "H") ? "horizontal" : 
                 (direction == "v" || direction == "V") ? "vertical" : "";
 
     if (direction == "") {
-        cout << "Invalid direction. Please enter 'h' or 'v'.\n" << endl;
+        cout << "Helm didn't understand. Enter 'h' or 'v'.\n" << endl;
         return directionSetup();
     }
     return direction;
@@ -62,18 +62,18 @@ string directionSetup() {
 
 int lengthSetup() {
     int length;
-    cout << "Enter ship length (2-5): ";
+    cout << "Specify ship length (2-5): ";
     cin >> length;
  
     if (cin.fail()) {
         cin.clear(); // Clear the error flag
         cin.ignore(10000, '\n'); // Ignore the invalid input
-        cout << "Invalid input. Please enter a number between 2 and 5.\n" << endl;
+        cout << "That's not on the shipyard manifest. Enter a number between 2 and 5.\n" << endl;
         return lengthSetup();
     }
     
     if (length < 2 || length > 5) {
-        cout << "Invalid length. Please enter a value between 2 and 5.\n" << endl;
+        cout << "The dock can't handle that size. Choose between 2 and 5.\n" << endl;
         return lengthSetup();
     }
     return length;
@@ -85,7 +85,7 @@ Ship shipSetup(Board& board) {
     int length;
     int ship_x_coord, ship_y_coord;
     
-    cout << "Enter ship name: ";
+    cout << "Name this vessel: ";
     cin >> name;
     
     direction = directionSetup();
@@ -108,7 +108,7 @@ Ship shipSetup(Board& board) {
 vector<int> coordinateSetup(Board& board, Ship& ship) {
     string coord;
 
-    cout << "\nEnter desired coordinates (e.g., A5): ";
+    cout << "\nEnter deployment coordinates (e.g., A5): ";
     cin >> coord;
 
     if (!validateCoord(coord, board)) {
@@ -121,8 +121,8 @@ vector<int> coordinateSetup(Board& board, Ship& ship) {
 void placeShip(Board& board, int row, int col) {
     for (int i = 0; i < 5; i++) {
         cout << "----------------------------------------" << endl;
-        cout << "Placing ship number " << i + 1 << "\n" << endl;
+        cout << "Preparing vessel " << i + 1 << " for launch\n" << endl;
         shipSetup(board);
     }
-    cout << "\nAll ships placed for " << board.getPlayerName() << "!" << endl;
+    cout << "\nFleet fully deployed for " << board.getPlayerName() << "!" << endl;
 }

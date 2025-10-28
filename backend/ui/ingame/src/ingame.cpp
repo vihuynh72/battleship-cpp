@@ -24,12 +24,12 @@ void pvcIngame(Board& player1, Board& player2) {
 
     Board& winner = checkWinner(player1, player2);
     cout << "========================================" << endl;
-    cout << "                GAME OVER               " << endl;
-    cout << "The winner is " << winner.getPlayerName() << "!" << endl;
-    cout << "Congratulations!" << endl;
-    cout << "Here are the details of the winning ships:" << endl;
+    cout << "              VICTORY REPORT            " << endl;
+    cout << "Triumph belongs to Admiral " << winner.getPlayerName() << "!" << endl;
+    cout << "Well played, Commander." << endl;
+    cout << "Fleet status of the victor:" << endl;
     printShipList(winner);
-    cout << "Thank you for playing!" << endl;
+    cout << "Thank you for sailing with us!" << endl;
     cout << "========================================" << endl;
 }
 
