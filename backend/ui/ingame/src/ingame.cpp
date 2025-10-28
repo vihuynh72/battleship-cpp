@@ -23,14 +23,26 @@ void pvcIngame(Board& player1, Board& player2) {
     }
 
     Board& winner = checkWinner(player1, player2);
-    cout << "========================================" << endl;
-    cout << "              VICTORY REPORT            " << endl;
-    cout << "Triumph belongs to Admiral " << winner.getPlayerName() << "!" << endl;
-    cout << "Well played, Commander." << endl;
-    cout << "Fleet status of the victor:" << endl;
+    cout << "\n╔════════════════════════════════════════╗" << endl;
+    cout << "║                                        ║" << endl;
+    cout << "║             ⚔ GAME OVER ⚔              ║" << endl;
+    cout << "║                                        ║" << endl;
+    cout << "╚════════════════════════════════════════╝" << endl;
+    cout << "\n┌────────────────────────────────────────┐" << endl;
+    cout << "│  🏆 VICTORY: " << winner.getPlayerName();
+    // Calculate padding
+    int nameLen = winner.getPlayerName().length();
+    int padding = 40 - 14 - nameLen - 2;
+    for (int i = 0; i < padding; i++) cout << " ";
+    cout << "  │" << endl;
+    cout << "└────────────────────────────────────────┘" << endl;
+    cout << "\n⚓ Triumph belongs to Admiral " << winner.getPlayerName() << "!" << endl;
+    cout << "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
+    cout << "    Well played, Commander." << endl;
+    cout << "    Fleet status of the victor:" << endl;
+    cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
     printShipList(winner);
-    cout << "Thank you for sailing with us!" << endl;
-    cout << "========================================" << endl;
+    cout << "\n⚓ Thank you for playing Battleship! ⚓\n" << endl;
 }
 
 void playerTurn(Board& player) {
