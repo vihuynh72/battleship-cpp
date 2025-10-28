@@ -13,40 +13,43 @@ int dimensionSetup() {
     int dimension;
     cin >> dimension;
     if (dimension < 5 || dimension > 26) {
-        cout << "Invalid dimension. Please enter a value between 5 and 26." << endl;
+        cout << "⚠️  That sea is too cramped or too vast. Choose between 5 and 26." << endl;
         return dimensionSetup();
     }
+    cout << "Great choice! The ocean now spans " << dimension << " units." << endl;
     return dimension;
 }
 
 string playerSetup() {
     string playerName;
     cin >> playerName;
+    cout << "Captain " << playerName << ", your command deck awaits." << endl;
     return playerName;
 }
-  
+
 Ship shipSetup(Board& board) {
     string name;
     string direction;
     int length;
     int ship_x_coord, ship_y_coord;
     
+    cout << "----------------------------------------" << endl;
     cout << "Enter ship name: ";
     cin >> name;
-    cout << "Enter ship direction (h for horizontal/v for vertical): ";
+    cout << "Enter ship direction (h for horizontal / v for vertical): ";
     cin >> direction;
-    direction = (direction == "h" || direction == "H") ? "horizontal" : 
+    direction = (direction == "h" || direction == "H") ? "horizontal" :
                 (direction == "v" || direction == "V") ? "vertical" : "";
 
     if (direction == "") {
-        cout << "Invalid direction. Please enter 'h' or 'v'.\n" << endl;
+        cout << "The helmsman looks confused. Use 'h' or 'v' to set the course.\n" << endl;
         return shipSetup(board);
     }
 
     cout << "Enter ship length (2-5): ";
     cin >> length;
     if (length < 2 || length > 5) {
-        cout << "Invalid length. Please enter a value between 2 and 5.\n" << endl;
+        cout << "Shipwrights protest! Choose a length between 2 and 5.\n" << endl;
         return shipSetup(board);
     }
 
@@ -61,21 +64,22 @@ Ship shipSetup(Board& board) {
     cin >> ship_y_coord;
 
     if (checkAvailableSpace(board, ship, ship_y_coord, ship_x_coord, direction) == false) {
-        cout << "Invalid coordinates. Please try again.\n" << endl;
+        cout << "There's already a vessel in those waters. Adjust your heading!\n" << endl;
         return shipSetup(board);
     }
 
     addShipToBoard(board, ship, ship_y_coord, ship_x_coord, direction);
     printBoard(board);
-    cout << "Ship placed successfully!\n" << endl;
+    cout << "The crew of the " << name << " cheers as the ship takes position!\n" << endl;
     return ship;
 }
 
 void placeShip(Board& board, int row, int col) {
     for (int i = 0; i < 5; i++) {
         cout << "----------------------------------------" << endl;
-        cout << "Placing ship number " << i + 1 << "\n" << endl;
+        cout << "Placing ship number " << i + 1 << " for Admiral " << board.getPlayerName() << "!\n" << endl;
+        cout << "(Fleet size: " << 5 - i << " vessels remain in dry dock.)" << endl;
         shipSetup(board);
     }
-    cout << "\nAll ships placed for " << board.getPlayerName() << "!" << endl;
+    cout << "\nAll ships deployed for " << board.getPlayerName() << "! Time to ready the cannons." << endl;
 }

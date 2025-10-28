@@ -10,7 +10,11 @@ using namespace std;
 
 void printBoard(Board& board) {
     cout << "\n" << endl;
-    cout << board.getPlayerName() << "'s Board: " << endl;
+    cout << "~~~~~~~~~~~~~~~ SEA CHART ~~~~~~~~~~~~~~~" << endl;
+    cout << "Command: " << board.getPlayerName() << endl;
+    cout << "Legend: ~ waves | O ship | X hit | * miss" << endl;
+    cout << "------------------------------------------" << endl;
+    cout << board.getPlayerName() << "'s Board:" << endl;
     // i want to print it like a chessboard with numbers on top and side
     cout << "  ";
     for (int j = 0; j < board.getColumns(); j++) {
@@ -26,24 +30,28 @@ void printBoard(Board& board) {
         cout << endl;
     }
     cout << endl;
+    cout << "------------------------------------------" << endl;
+    cout << "Plot your strikes wisely, Admiral " << board.getPlayerName() << "!" << endl;
 }
 
 void printShipList(Board& board) {
-    cout << board.getPlayerName() << "'s Ships: " << endl;
+    cout << "\nFleet Roster for Admiral " << board.getPlayerName() << ":" << endl;
+    cout << "----------------------------------------" << endl;
     for (Ship& ship : board.getShipList()) {
         cout << "------------------------" << endl;
         printShipInfo(ship);
         cout << "------------------------" << endl;
     }
+    cout << "Review complete. Maintain readiness!" << endl;
 }
 
 void printShipInfo(Ship& ship) {
-    cout << "Ship Name: " << ship.getName() << endl;
-    cout << "Health: " << ship.getLength() - ship.getHitCount() << endl;
-    cout << "Status: " << (ship.checkIsSunk() ? "Sunk" : "Not Sunk") << endl;
+    cout << "Ship Name : " << ship.getName() << endl;
+    cout << "Hull Integrity : " << ship.getLength() - ship.getHitCount() << " / " << ship.getLength() << endl;
+    cout << "Status : " << (ship.checkIsSunk() ? "SUNK - WRECKAGE DRIFTING" : "ACTIVE - READY TO FIRE") << endl;
 }
 
 void printCommentary() {
-    
+
 }
 
