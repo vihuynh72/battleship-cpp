@@ -17,12 +17,12 @@ using namespace std;
 
 void displayHome() {
     cout << "========================================" << endl;
-    cout << "   Welcome to the Ultimate Battleship  " << endl;
+    cout << "     ~~~ COMMAND BRIDGE TERMINAL ~~~    " << endl;
     cout << "========================================" << endl;
-    cout << "1. vs Computer" << endl;
-    cout << "2. vs Human" << endl;
-    cout << "3. Exit" << endl;
-    cout << "Please select an option (1-3): ";
+    cout << "1. Engage the AI Armada" << endl;
+    cout << "2. Challenge Another Captain" << endl;
+    cout << "3. Stand Down" << endl;
+    cout << "Choose your mission (1-3): ";
 
     int choice;
     cin >> choice;
@@ -32,15 +32,15 @@ void displayHome() {
             break;
         case 2:
             // TODO: Implement human vs human mode
-            cout << "Human vs Human mode is under development. Please try again later." << endl;
+            cout << "Two-player skirmishes are still being charted. Check back after the next briefing." << endl;
             displayHome();
             break;
         case 3:
-            cout << "Exiting game. Thank you for playing!" << endl;
+            cout << "Powering down tactical console. Fair winds and following seas!" << endl;
             exit(0);
             break;
         default:
-            cout << "Invalid choice. Please try again." << endl;
+            cout << "That selection drifted off course. Try plotting it again." << endl;
             displayHome();
     }
 }
@@ -48,16 +48,16 @@ void displayHome() {
 
 void displaySetup() {
     cout << "========================================" << endl;
-    cout << "               Game Setup               " << endl;
+    cout << "            STRATEGY BRIEFING           " << endl;
     cout << "----------------------------------------" << endl;
-    cout << "1. Set up board dimensions\n" << endl;
+    cout << "1. Configure your ocean battlefield\n" << endl;
     
     vector<int> dimensions = dimensionSetup();
     int rows = dimensions[0];
     int cols = dimensions[1];
     
     cout << "----------------------------------------" << endl;
-    cout << "2. Set up player names\n" << endl;
+    cout << "2. Register commanding officers\n" << endl;
     vector<string> players = playerSetup(true);
     string player1 = players[0];
     string player2 = players[1];
@@ -69,26 +69,28 @@ void displaySetup() {
     player2Board.setBoardProperties(player2, rows, cols);
 
     cout << "----------------------------------------" << endl;
-    cout << "3. Set up ships for each player" << endl;
-    cout << "\nEach person will have 5 ships of varying sizes." << endl;
-    cout << "Placing ships for " << player1 << "\n" << endl;
+    cout << "3. Deploy your naval fleet" << endl;
+    cout << "\nEach admiral commands 5 ships of varying tonnage." << endl;
+    cout << "Plotting courses for " << player1 << "\n" << endl;
     
     placeShip(player1Board, rows, cols);
 
-    cout << "Placing ships for " << player2 << "\n" << endl;
+    cout << "Plotting courses for " << player2 << "\n" << endl;
     randomizeShipOnBoard(player2Board);
+
+    player2Board.setHideShips(true);
 
     promptBeginGame(player1Board, player2Board, true);
 }
 
 void personVsComputer() {
     cout << "========================================" << endl;
-    cout << "            Person vs Computer          " << endl;
+    cout << "           PERSON VS COMPUTER           " << endl;
     cout << "========================================" << endl;
-    cout << "1. Quick Game" << endl;
-    cout << "2. Setup Game" << endl;
-    cout << "3. Back to Main Menu" << endl;
-    cout << "Please select an option (1-3): ";
+    cout << "1. Immediate Engagement" << endl;
+    cout << "2. Custom Battle Plan" << endl;
+    cout << "3. Return to Command Bridge" << endl;
+    cout << "Select your directive (1-3): ";
     int choice;
     cin >> choice;
 
@@ -103,14 +105,14 @@ void personVsComputer() {
             displayHome();
             break;
         default:
-            cout << "Invalid choice. Please try again." << endl;
+            cout << "Command unclear. Please issue a valid order." << endl;
             personVsComputer();
     }
 }
 
 void pvcQuickGame() {
     cout << "========================================" << endl;
-    cout << "               Quick Game               \n" << endl;
+    cout << "             QUICK DEPLOYMENT           \n" << endl;
 
     string player1 = "Player";
     string player2 = "Computer";
@@ -121,7 +123,7 @@ void pvcQuickGame() {
     player2Board.setBoardProperties(player2, 10, 10);
     
     cout << "----------------------------------------" << endl;
-    cout << "Do you want to place your ships manually? (y/n): ";
+    cout << "Do you want to place your fleet manually? (y/n): ";
     string choice;
     cin >> choice;
 
@@ -129,7 +131,7 @@ void pvcQuickGame() {
         vector<Ship> defaultShips = getDefaultShips();
         // get coordinate and place each ship
         for (Ship& ship : defaultShips) {
-            cout << "Placing ship: " << ship.getName() << " (Length: " << ship.getLength() << ")\n" << endl;
+            cout << "Deploying: " << ship.getName() << " (Length: " << ship.getLength() << ")\n" << endl;
 
             string direction = directionSetup();
             ship.setShipProperties(ship.getName(), direction, ship.getLength());
@@ -140,13 +142,15 @@ void pvcQuickGame() {
 
             addShipToBoard(player1Board, ship, ship_y_coord, ship_x_coord, ship.getDirection());
             printBoard(player1Board);
-            cout << "Ship placed successfully!" << endl;
+            cout << "Ship anchored successfully!" << endl;
         }
-        
+
     } else {
         randomizeShipOnBoard(player1Board);
     }
     randomizeShipOnBoard(player2Board);
+
+    player2Board.setHideShips(true);
 
     printBoardSideBySide(player1Board, player2Board);
 

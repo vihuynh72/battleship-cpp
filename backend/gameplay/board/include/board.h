@@ -23,6 +23,9 @@ class Board {
         void addShip(Ship&); // Method to add ship to ship list
         std::vector<Ship>& getShipList(); // Method to get list of ships
 
+        void setHideShips(bool hide); // Control whether ships should be hidden when displayed
+        bool getHideShips() const; // Check if ships are currently hidden
+
     private:
         // Player name
         std::string playerName;
@@ -37,6 +40,8 @@ class Board {
 
         // 2D vectors to represent the board for dynamic sizing
         std::vector<std::vector<std::string>> board;
+
+        bool hideShips;
 };
 
 #endif // BOARD_H

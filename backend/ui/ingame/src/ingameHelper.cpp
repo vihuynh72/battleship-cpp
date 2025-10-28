@@ -12,7 +12,10 @@ using namespace std;
 
 void printBoard(Board& board) {
     cout << endl;
-    cout << board.getPlayerName() << "'s Board: " << endl;
+    cout << "=== " << board.getPlayerName() << "'s Fleet Map ===" << endl;
+    if (board.getHideShips()) {
+        cout << "(Enemy sonar interference active. Issue the \"show\" command to reveal their fleet!)" << endl;
+    }
     cout << "   ";
     for (int j = 0; j < board.getColumns(); j++) {
         cout << "  " << static_cast<char>('A' + j) << " ";
@@ -28,21 +31,27 @@ void printBoard(Board& board) {
 
         for (int j = 0; j < board.getColumns(); j++) {
             string cell = board.getBoard()[i][j];
-            
-            // Convert ship index [0], [1], etc. to ship name letter for display
-            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
-                string content = cell.substr(1, cell.length() - 2);
-                // Check if it's a number (ship index)
-                if (!content.empty() && isdigit(content[0])) {
-                    int shipIndex = stoi(content);
-                    vector<Ship>& ships = board.getShipList();
-                    if (shipIndex >= 0 && shipIndex < ships.size()) {
-                        // Display first letter of ship name
-                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+
+            if (board.getHideShips()) {
+                if (!checkEmptyCell(cell) && cell != "[X]" && cell != "[O]") {
+                    cell = "[~]";
+                }
+            } else {
+                // Convert ship index [0], [1], etc. to ship name letter for display
+                if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
+                    string content = cell.substr(1, cell.length() - 2);
+                    // Check if it's a number (ship index)
+                    if (!content.empty() && isdigit(content[0])) {
+                        int shipIndex = stoi(content);
+                        vector<Ship>& ships = board.getShipList();
+                        if (shipIndex >= 0 && shipIndex < ships.size()) {
+                            // Display first letter of ship name
+                            cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+                        }
                     }
                 }
             }
-            
+
             cout << cell << " ";
         }
         cout << endl;
@@ -50,7 +59,8 @@ void printBoard(Board& board) {
 }
 
 void printShipList(Board& board) {
-    cout << board.getPlayerName() << "'s Ships: " << endl;
+    cout << endl;
+    cout << board.getPlayerName() << "'s Battle Readiness Report" << endl;
     for (Ship& ship : board.getShipList()) {
         cout << "------------------------" << endl;
         printShipInfo(ship);
@@ -59,9 +69,9 @@ void printShipList(Board& board) {
 }
 
 void printShipInfo(Ship& ship) {
-    cout << "Ship Name: " << ship.getName() << endl;
-    cout << "Health: " << ship.getLength() - ship.getHitCount() << endl;
-    cout << "Status: " << (ship.checkIsSunk() ? "Sunk" : "Not Sunk") << endl;
+    cout << "Vessel: " << ship.getName() << endl;
+    cout << "Hull Integrity: " << ship.getLength() - ship.getHitCount() << " / " << ship.getLength() << endl;
+    cout << "Status: " << (ship.checkIsSunk() ? "Sunk beneath the waves" : "Operational") << endl;
 }
 
 bool validateCoord(string coord, Board& board) {
@@ -71,7 +81,7 @@ bool validateCoord(string coord, Board& board) {
         !isalpha(coord[0]) || 
         !isdigit(coord[1]) || 
         (coord.length() == 3 && !isdigit(coord[2]))) {
-        cout << "Invalid format. Please use the format LetterNumber (e.g., A5).\n" << endl;
+        cout << "That transmission was garbled. Use the LetterNumber format (e.g., A5).\n" << endl;
         return false;
     }
     
@@ -79,7 +89,7 @@ bool validateCoord(string coord, Board& board) {
     int row = stoi(coord.substr(1)) - 1;
     
     if (checkOutOfBounds(board, row, col) || !checkEmptyCell(board.getBoard()[row][col])) {
-        cout << "Invalid coordinates. Please try again.\n" << endl;
+        cout << "No target acquired there. Adjust your aim and try again.\n" << endl;
         return false;
     }
     return true;
@@ -159,21 +169,27 @@ void printBoardRow(Board& board, int rowIndex, bool hasRow) {
         // Print board cells
         for (int j = 0; j < board.getColumns(); j++) {
             string cell = board.getBoard()[rowIndex][j];
-            
-            // Convert ship index [0], [1], etc. to ship name letter for display
-            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
-                string content = cell.substr(1, cell.length() - 2);
-                // Check if it's a number (ship index)
-                if (!content.empty() && isdigit(content[0])) {
-                    int shipIndex = stoi(content);
-                    vector<Ship>& ships = board.getShipList();
-                    if (shipIndex >= 0 && shipIndex < ships.size()) {
-                        // Display first letter of ship name
-                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+
+            if (board.getHideShips()) {
+                if (!checkEmptyCell(cell) && cell != "[X]" && cell != "[O]") {
+                    cell = "[~]";
+                }
+            } else {
+                // Convert ship index [0], [1], etc. to ship name letter for display
+                if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
+                    string content = cell.substr(1, cell.length() - 2);
+                    // Check if it's a number (ship index)
+                    if (!content.empty() && isdigit(content[0])) {
+                        int shipIndex = stoi(content);
+                        vector<Ship>& ships = board.getShipList();
+                        if (shipIndex >= 0 && shipIndex < ships.size()) {
+                            // Display first letter of ship name
+                            cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+                        }
                     }
                 }
             }
-            
+
             cout << cell << " ";
         }
     } else {
