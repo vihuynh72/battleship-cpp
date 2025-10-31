@@ -10,13 +10,19 @@
 
 using namespace std;
 
+// Simple ANSI color codes
+const string BLUE = "\033[34m";
+const string RED = "\033[31m";
+const string YELLOW = "\033[33m";
+const string GREEN = "\033[32m";
+const string RESET = "\033[0m";
+
 void printBoard(Board& board) {
-    cout << "\n╔═══ " << board.getPlayerName() << "'s Fleet Map ═══╗" << endl;
+    cout << "\n" << board.getPlayerName() << "'s Fleet Map" << endl;
     if (board.getHideShips()) {
         cout << "║ 🌊 Enemy sonar interference active    ║" << endl;
         cout << "║ 💡 Use \"show\" to reveal their fleet  ║" << endl;
     }
-    cout << "╚════════════════════════════════════════╝" << endl;
     cout << "   ";
     for (int j = 0; j < board.getColumns(); j++) {
         cout << "  " << static_cast<char>('A' + j) << " ";
@@ -54,7 +60,19 @@ void printBoard(Board& board) {
                 }
             }
 
-            cout << cell << " ";
+            // Add colors to different cell types
+            if (cell == "[~]") {
+                cout << BLUE << cell << RESET << " ";
+            } else if (cell == "[X]") {
+                cout << RED << cell << RESET << " ";
+            } else if (cell == "[O]") {
+                cout << YELLOW << cell << RESET << " ";
+            } else if (cell == "[ ]") {
+                cout << cell << " ";
+            } else {
+                // Ships - add green color
+                cout << GREEN << cell << RESET << " ";
+            }
         }
         cout << endl;
     }
@@ -218,7 +236,19 @@ void printBoardRow(Board& board, int rowIndex, bool hasRow) {
                 }
             }
 
-            cout << cell << " ";
+            // Add colors to different cell types
+            if (cell == "[~]") {
+                cout << BLUE << cell << RESET << " ";
+            } else if (cell == "[X]") {
+                cout << RED << cell << RESET << " ";
+            } else if (cell == "[O]") {
+                cout << YELLOW << cell << RESET << " ";
+            } else if (cell == "[ ]") {
+                cout << cell << " ";
+            } else {
+                // Ships - add green color
+                cout << GREEN << cell << RESET << " ";
+            }
         }
     } else {
         // Print empty spaces when board has fewer rows
