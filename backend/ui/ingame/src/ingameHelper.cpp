@@ -15,14 +15,20 @@ const string BLUE = "\033[34m";
 const string RED = "\033[31m";
 const string YELLOW = "\033[33m";
 const string GREEN = "\033[32m";
+const string CYAN = "\033[36m";
+const string MAGENTA = "\033[35m";
+const string BRIGHT_RED = "\033[91m";
+const string DIM = "\033[2m";
+const string BOLD = "\033[1m";
 const string RESET = "\033[0m";
 
 void printBoard(Board& board) {
-    cout << "\n" << board.getPlayerName() << "'s Fleet Map" << endl;
+    cout << "\n" << CYAN << BOLD << "╔═══ " << board.getPlayerName() << "'s Fleet Map ═══╗" << RESET << endl;
     if (board.getHideShips()) {
-        cout << "║ 🌊 Enemy sonar interference active    ║" << endl;
-        cout << "║ 💡 Use \"show\" to reveal their fleet  ║" << endl;
+        cout << CYAN << "║" << RESET << " 🌊 Enemy sonar interference active    " << CYAN << "║" << RESET << endl;
+        cout << CYAN << "║" << RESET << " " << YELLOW << "💡" << RESET << " Use \"show\" to reveal their fleet  " << CYAN << "║" << RESET << endl;
     }
+    cout << CYAN << "╚════════════════════════════════════════╝" << RESET << endl;
     cout << "   ";
     for (int j = 0; j < board.getColumns(); j++) {
         cout << "  " << static_cast<char>('A' + j) << " ";
