@@ -10,9 +10,25 @@
 
 using namespace std;
 
+// Simple ANSI color codes
+const string BLUE = "\033[34m";
+const string RED = "\033[31m";
+const string YELLOW = "\033[33m";
+const string GREEN = "\033[32m";
+const string CYAN = "\033[36m";
+const string MAGENTA = "\033[35m";
+const string BRIGHT_RED = "\033[91m";
+const string DIM = "\033[2m";
+const string BOLD = "\033[1m";
+const string RESET = "\033[0m";
+
 void printBoard(Board& board) {
-    cout << endl;
-    cout << board.getPlayerName() << "'s Board: " << endl;
+    cout << "\n" << CYAN << BOLD << "╔═══ " << board.getPlayerName() << "'s Fleet Map ═══╗" << RESET << endl;
+    if (board.getHideShips()) {
+        cout << CYAN << "║" << RESET << " 🌊 Enemy sonar interference active    " << CYAN << "║" << RESET << endl;
+        cout << CYAN << "║" << RESET << " " << YELLOW << "💡" << RESET << " Use \"show\" to reveal their fleet  " << CYAN << "║" << RESET << endl;
+    }
+    cout << CYAN << "╚════════════════════════════════════════╝" << RESET << endl;
     cout << "   ";
     for (int j = 0; j < board.getColumns(); j++) {
         cout << "  " << static_cast<char>('A' + j) << " ";
@@ -28,40 +44,85 @@ void printBoard(Board& board) {
 
         for (int j = 0; j < board.getColumns(); j++) {
             string cell = board.getBoard()[i][j];
-            
-            // Convert ship index [0], [1], etc. to ship name letter for display
-            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
-                string content = cell.substr(1, cell.length() - 2);
-                // Check if it's a number (ship index)
-                if (!content.empty() && isdigit(content[0])) {
-                    int shipIndex = stoi(content);
-                    vector<Ship>& ships = board.getShipList();
-                    if (shipIndex >= 0 && shipIndex < ships.size()) {
-                        // Display first letter of ship name
-                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+
+            if (board.getHideShips()) {
+                // Hide all cells except hits ([X]) and misses ([O])
+                if (cell != "[X]" && cell != "[O]") {
+                    cell = "[~]";
+                }
+            } else {
+                // Convert ship index [0], [1], etc. to ship name letter for display
+                if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
+                    string content = cell.substr(1, cell.length() - 2);
+                    // Check if it's a number (ship index)
+                    if (!content.empty() && isdigit(content[0])) {
+                        int shipIndex = stoi(content);
+                        vector<Ship>& ships = board.getShipList();
+                        if (shipIndex >= 0 && shipIndex < ships.size()) {
+                            // Display first letter of ship name
+                            cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+                        }
                     }
                 }
             }
-            
-            cout << cell << " ";
+
+            // Add colors to different cell types
+            if (cell == "[~]") {
+                cout << BLUE << cell << RESET << " ";
+            } else if (cell == "[X]") {
+                cout << RED << cell << RESET << " ";
+            } else if (cell == "[O]") {
+                cout << YELLOW << cell << RESET << " ";
+            } else if (cell == "[ ]") {
+                cout << cell << " ";
+            } else {
+                // Ships - add green color
+                cout << GREEN << cell << RESET << " ";
+            }
         }
         cout << endl;
     }
 }
 
 void printShipList(Board& board) {
-    cout << board.getPlayerName() << "'s Ships: " << endl;
+    cout << "\n┌────────────────────────────────────────┐" << endl;
+    cout << "│  " << board.getPlayerName() << "'s Battle Readiness Report";
+    // Calculate padding
+    int nameLen = board.getPlayerName().length();
+    int padding = 40 - 31 - nameLen - 2;
+    for (int i = 0; i < padding; i++) cout << " ";
+    cout << "     │" << endl;
+    cout << "└────────────────────────────────────────┘" << endl;
     for (Ship& ship : board.getShipList()) {
-        cout << "------------------------" << endl;
+        cout << "\n┌─ " << ship.getName();
+        int shipNameLen = ship.getName().length();
+        for (int i = 0; i < 35 - shipNameLen; i++) cout << "─";
+        cout << "┐" << endl;
         printShipInfo(ship);
-        cout << "------------------------" << endl;
+        cout << "└─────────────────────────────────────┘" << endl;
     }
 }
 
 void printShipInfo(Ship& ship) {
-    cout << "Ship Name: " << ship.getName() << endl;
-    cout << "Health: " << ship.getLength() - ship.getHitCount() << endl;
-    cout << "Status: " << (ship.checkIsSunk() ? "Sunk" : "Not Sunk") << endl;
+    cout << "│ ⚓ Vessel: " << ship.getName();
+    int nameLen = ship.getName().length();
+    int padding = 38 - 11 - nameLen - 2;
+    for (int i = 0; i < padding; i++) cout << " ";
+    cout << "│" << endl;
+    
+    cout << "│ ⚡ Hull Integrity: " << ship.getLength() - ship.getHitCount() << " / " << ship.getLength();
+    // Calculate padding for hull integrity line
+    string integrityStr = to_string(ship.getLength() - ship.getHitCount()) + " / " + to_string(ship.getLength());
+    int integrityPadding = 37 - 18 - integrityStr.length() - 2;
+    for (int i = 0; i < integrityPadding; i++) cout << " ";
+    cout << "│" << endl;
+    
+    string status = ship.checkIsSunk() ? "💀 Sunk beneath the waves" : "✓ Operational";
+    cout << "│ " << status;
+    int statusLen = ship.checkIsSunk() ? 26 : 14;
+    int statusPadding = 40 - 1 - statusLen - 2;
+    for (int i = 0; i < statusPadding; i++) cout << " ";
+    cout << "│" << endl;
 }
 
 bool validateCoord(string coord, Board& board) {
@@ -71,7 +132,7 @@ bool validateCoord(string coord, Board& board) {
         !isalpha(coord[0]) || 
         !isdigit(coord[1]) || 
         (coord.length() == 3 && !isdigit(coord[2]))) {
-        cout << "Invalid format. Please use the format LetterNumber (e.g., A5).\n" << endl;
+        cout << "That transmission was garbled. Use the LetterNumber format (e.g., A5).\n" << endl;
         return false;
     }
     
@@ -79,7 +140,7 @@ bool validateCoord(string coord, Board& board) {
     int row = stoi(coord.substr(1)) - 1;
     
     if (checkOutOfBounds(board, row, col) || !checkEmptyCell(board.getBoard()[row][col])) {
-        cout << "Invalid coordinates. Please try again.\n" << endl;
+        cout << "No target acquired there. Adjust your aim and try again.\n" << endl;
         return false;
     }
     return true;
@@ -159,22 +220,41 @@ void printBoardRow(Board& board, int rowIndex, bool hasRow) {
         // Print board cells
         for (int j = 0; j < board.getColumns(); j++) {
             string cell = board.getBoard()[rowIndex][j];
-            
-            // Convert ship index [0], [1], etc. to ship name letter for display
-            if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
-                string content = cell.substr(1, cell.length() - 2);
-                // Check if it's a number (ship index)
-                if (!content.empty() && isdigit(content[0])) {
-                    int shipIndex = stoi(content);
-                    vector<Ship>& ships = board.getShipList();
-                    if (shipIndex >= 0 && shipIndex < ships.size()) {
-                        // Display first letter of ship name
-                        cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+
+            if (board.getHideShips()) {
+                // Hide all cells except hits ([X]) and misses ([O])
+                if (cell != "[X]" && cell != "[O]") {
+                    cell = "[~]";
+                }
+            } else {
+                // Convert ship index [0], [1], etc. to ship name letter for display
+                if (cell.length() >= 3 && cell[0] == '[' && cell[cell.length()-1] == ']') {
+                    string content = cell.substr(1, cell.length() - 2);
+                    // Check if it's a number (ship index)
+                    if (!content.empty() && isdigit(content[0])) {
+                        int shipIndex = stoi(content);
+                        vector<Ship>& ships = board.getShipList();
+                        if (shipIndex >= 0 && shipIndex < ships.size()) {
+                            // Display first letter of ship name
+                            cell = "[" + ships[shipIndex].getName().substr(0, 1) + "]";
+                        }
                     }
                 }
             }
-            
-            cout << cell << " ";
+
+            // Add colors to different cell types
+            if (cell == "[~]") {
+                cout << BLUE << cell << RESET << " ";
+            } else if (cell == "[X]") {
+                cout << RED << cell << RESET << " ";
+            } else if (cell == "[O]") {
+                cout << YELLOW << cell << RESET << " ";
+            } else if (cell == "[ ]") {
+                cout << cell << " ";
+            } else {
+                // Ships - add green color
+                cout << GREEN << cell << RESET << " ";
+            }
         }
     } else {
         // Print empty spaces when board has fewer rows

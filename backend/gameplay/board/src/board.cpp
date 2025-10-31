@@ -11,6 +11,7 @@ Board::Board() {
     Columns = 10;
 
     totalShips = 0;
+    hideShips = false;
 
     // Initialize a 10x10 board with empty sea
     board = vector<vector<string>>(10, vector<string>(10, "[ ]")); // "[ ]" represents empty sea
@@ -27,6 +28,7 @@ void Board::setBoardProperties(string name, int rows, int cols) {
     Rows = rows;
     Columns = cols;
     board = vector<vector<string>>(Rows, vector<string>(Columns, "[ ]")); // Initialize board with empty sea
+    hideShips = false;
 }
 
 void Board::updateBoard(vector<vector<string>> newBoard) {
@@ -63,4 +65,12 @@ void Board::addShip(Ship &ship) {
 
 vector<Ship>& Board::getShipList() {
     return shipList;
+}
+
+void Board::setHideShips(bool hide) {
+    hideShips = hide;
+}
+
+bool Board::getHideShips() const {
+    return hideShips;
 }

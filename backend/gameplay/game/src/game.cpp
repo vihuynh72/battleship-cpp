@@ -26,30 +26,67 @@ void pvcGame::playerTurn() {
     int row, col;
 
     while (true) {
-        cout << "Enter coordinates to attack (e.g., A5): ";
+        cout << "\n⚔ >>> Lock in bombardment coordinates (e.g., A5): ";
         string input;
         cin >> input;
-        
+
+        if (input == "show") {
+            playerBoard.setHideShips(false);
+            cout << "\n🔍 Cheat mode engaged: enemy silhouettes illuminated!" << endl;
+            printBoardSideBySide(getPlayer1Board(), playerBoard);
+            continue;
+        }
+
+        if (input == "hide") {
+            playerBoard.setHideShips(true);
+            cout << "\n🌊 Fog of war restored. Enemy fleet cloaked once more." << endl;
+            printBoardSideBySide(getPlayer1Board(), playerBoard);
+            continue;
+        }
+
+        if (input == "kill") {
+            cout << "\n🚨 DEBUG MODE: Orbital strike authorized!" << endl;
+            cout << "⚡ Annihilating enemy fleet..." << endl;
+            // Sink all enemy ships instantly
+            for (Ship& ship : playerBoard.getShipList()) {
+                while (!ship.checkIsSunk()) {
+                    ship.incrementHitCount();
+                }
+            }
+            cout << "\n💥 All enemy vessels destroyed! Victory is yours!" << endl;
+            // Mark all ship cells as hit on the board
+            for (int i = 0; i < playerBoard.getRows(); i++) {
+                for (int j = 0; j < playerBoard.getColumns(); j++) {
+                    string cell = playerBoard.getBoard()[i][j];
+                    if (cell != "[ ]" && cell != "[X]" && cell != "[O]") {
+                        playerBoard.getBoard()[i][j] = "[X]";
+                    }
+                }
+            }
+            printBoardSideBySide(getPlayer1Board(), playerBoard);
+            return; // End turn immediately
+        }
+
         vector<int> coord = coordToInt(input);
         row = coord[0];
         col = coord[1];
 
         // Validate input
         if (row < 0 || row >= playerBoard.getRows() || col < 0 || col >= playerBoard.getColumns()) {
-            cout << "Invalid coordinates. Please try again." << endl;
+            cout << "❌ Those coordinates fall outside our radar range. Try again." << endl;
             continue;
         }
 
         // Check if already attacked
         string cellContent = playerBoard.getBoard()[row][col];
         if (cellContent == "[X]" || cellContent == "[O]") {
-            cout << "Already attacked this position. Try again." << endl;
+            cout << "❌ We've already shelled those waters. Choose a fresh target." << endl;
             continue;
         }
 
         // Attack and break out of loop
         attackShipOnBoard(playerBoard, row, col);
-        cout << "You attacked position " << static_cast<char>('A' + col) << (row + 1) << endl;
+        cout << "\n💥 Impact confirmed at sector " << static_cast<char>('A' + col) << (row + 1) << "!" << endl;
         break;
     }
 }
@@ -68,7 +105,7 @@ void pvcGame::computerTurn() {
     }
 
     attackShipOnBoard(playerBoard, row, col);
-    cout << "Computer attacked position " << static_cast<char>('A' + col) << (row + 1) << endl;
+    cout << "\n💥 Enemy AI unleashes fire upon sector " << static_cast<char>('A' + col) << (row + 1) << "!" << endl;
 }
 
-    
+
