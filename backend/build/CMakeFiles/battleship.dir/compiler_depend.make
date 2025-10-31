@@ -2136,11 +2136,6 @@ CMakeFiles/battleship.dir/ui/ingame/src/ingame.cpp.o: /workspaces/battleship-cpp
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
   /workspaces/battleship-cpp/backend/gameplay/ship/include/ship.h \
   /workspaces/battleship-cpp/backend/gameplay/board/include/board.h \
-  /workspaces/battleship-cpp/backend/gameplay/board/include/board.h \
-  /workspaces/battleship-cpp/backend/gameplay/game/include/gameMode.h \
-  /workspaces/battleship-cpp/backend/gameplay/game/include/game.h \
-  /workspaces/battleship-cpp/backend/gameplay/board/include/board.h \
-  /workspaces/battleship-cpp/backend/gameplay/mechanics/game/include/game.h \
   /workspaces/battleship-cpp/backend/gameplay/ship/include/ship.h \
   /workspaces/battleship-cpp/backend/gameplay/board/include/board.h \
   /workspaces/battleship-cpp/backend/gameplay/ship/include/ship.h \
@@ -2348,13 +2343,7 @@ CMakeFiles/battleship.dir/ui/ingame/src/ingameHelper.cpp.o: /workspaces/battlesh
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
   /workspaces/battleship-cpp/backend/gameplay/board/include/board.h \
-  /workspaces/battleship-cpp/backend/gameplay/board/include/board.h \
   /workspaces/battleship-cpp/backend/gameplay/ship/include/ship.h \
-  /workspaces/battleship-cpp/backend/gameplay/mechanics/space/include/space.h \
-  /workspaces/battleship-cpp/backend/gameplay/ship/include/ship.h \
-  /workspaces/battleship-cpp/backend/gameplay/board/include/board.h \
-  /workspaces/battleship-cpp/backend/gameplay/ship/include/ship.h \
-  /workspaces/battleship-cpp/backend/ui/pregame/include/pregameHelper.h \
   /workspaces/battleship-cpp/backend/gameplay/ship/include/ship.h \
   /workspaces/battleship-cpp/backend/gameplay/board/include/board.h \
   /workspaces/battleship-cpp/backend/ui/ingame/include/ingameHelper.h
@@ -3002,9 +2991,9 @@ CMakeFiles/battleship.dir/ui/pregame/src/pregameHelper.cpp.o: /workspaces/battle
   /workspaces/battleship-cpp/backend/ui/pregame/include/pregameHelper.h
 
 
-/workspaces/battleship-cpp/backend/ui/pregame/src/pregame.cpp:
-
 /workspaces/battleship-cpp/backend/ui/pregame/include/pregameHelper.h:
+
+/workspaces/battleship-cpp/backend/ui/pregame/src/pregame.cpp:
 
 /workspaces/battleship-cpp/backend/ui/ingame/src/ingameHelper.cpp:
 
