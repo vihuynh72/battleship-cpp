@@ -14,14 +14,19 @@
 
 using namespace std;
 
+// ANSI color codes
+const string CYAN = "\033[36m";
+const string MAGENTA = "\033[35m";
+const string BOLD = "\033[1m";
+const string RESET = "\033[0m";
 
 void displayHome() {
     cout << "\n";
-    cout << "╔════════════════════════════════════════╗" << endl;
-    cout << "║                                        ║" << endl;
-    cout << "║      ⚓ COMMAND BRIDGE TERMINAL ⚓     ║" << endl;
-    cout << "║                                        ║" << endl;
-    cout << "╚════════════════════════════════════════╝" << endl;
+    cout << CYAN << BOLD << "╔════════════════════════════════════════╗" << RESET << endl;
+    cout << CYAN << "║" << RESET << "                                        " << CYAN << "║" << RESET << endl;
+    cout << CYAN << "║" << RESET << "      " << CYAN << "⚓" << RESET << " COMMAND BRIDGE TERMINAL " << CYAN << "⚓" << RESET << "     " << CYAN << "║" << RESET << endl;
+    cout << CYAN << "║" << RESET << "                                        " << CYAN << "║" << RESET << endl;
+    cout << CYAN << "╚════════════════════════════════════════╝" << RESET << endl;
     cout << "\n";
     cout << "┌────────────────────────────────────────┐" << endl;
     cout << "│  [1] ⚔  Engage the AI Armada           │" << endl;
